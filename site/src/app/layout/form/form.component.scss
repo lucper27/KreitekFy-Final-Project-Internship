@@ -1,0 +1,26 @@
+.form-container {
+  padding: 2%;
+  border-radius: 8px;
+  box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    float: left;
+    border: 2px solid white;
+  }
+
+  .form-group {
+    margin: 10%;
+  }
+
+  .labels{
+    display: block;
+    color: white;
+  }
+
+}
