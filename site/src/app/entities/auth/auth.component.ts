@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Profile} from "../song/model/song.model";
+import {Profile} from "./model/song.model";
 import {SongService} from "../song/service/song.service";
+import {ProfileService} from "./service/profile.service";
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,7 @@ export class AuthComponent implements OnInit {
   profiles: Profile[] = [];
 
   constructor(
-    private songService: SongService
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class AuthComponent implements OnInit {
 
 
   private getProfiles() {
-    this.songService.getAllUsers().subscribe({
+    this.profileService.getAllUsers().subscribe({
       next: res => {
         this.profiles = res;
         console.log(this.profiles)

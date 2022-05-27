@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Profile} from "../model/song.model";
+import {ISong} from "../model/song.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,28 @@ export class SongService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllUsers(): Observable<Profile[]>{
-    let urlEndpoint: string = "http://localhost:8080/stream/profiles/";
-    return this.http.get<Profile[]>(urlEndpoint);
-}
+  public getAllSongs(): Observable<ISong[]>{
+    let urlEndpoint: string = "http://localhost:8080/stream/songs";
+    return this.http.get<ISong[]>(urlEndpoint);
+  }
+
+  public getSongById(songId: any): Observable<ISong> {
+    const urlEndpoint: string = "http://localhost:8080/stream/song/items/" + songId;
+    return this.http.get<ISong>(urlEndpoint);
+  }
+
+  public insertSong(song: ISong): Observable<ISong> {
+    const urlEndpoint: string = "http://localhost:8080/stream/songs";
+    return this.http.post<ISong>(urlEndpoint, song);
+  }
+
+  public updateSong(song: ISong): Observable<ISong> {
+    const urlEndpoint: string = "http://localhost:8080/stream/songs";
+    return this.http.put<ISong>(urlEndpoint, song);
+  }
+
+  public deleteSong(songId: number): Observable<any> {
+    const urlEndpoint: string = "http://localhost:8080/stream/songs" + songId;
+    return this.http.delete<any>(urlEndpoint);
+  }
 }
