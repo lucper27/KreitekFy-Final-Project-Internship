@@ -6,13 +6,17 @@ import { SongListComponent } from './entities/song/song-list/song-list.component
 import { AuthComponent } from './entities/auth/auth.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpRequestIntercept} from "./config/interceptors/http-request-interceptor.inteceptor";
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SongListComponent,
-    AuthComponent
+    AuthComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

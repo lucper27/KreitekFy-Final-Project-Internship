@@ -22,7 +22,10 @@ export class AuthComponent implements OnInit {
 
   private getProfiles() {
     this.songService.getAllUsers().subscribe({
-      next: res => { this.profiles = res },
+      next: res => {
+        this.profiles = res;
+        console.log(this.profiles)
+      },
       error: err => { console.log(err) }
     });
   }
