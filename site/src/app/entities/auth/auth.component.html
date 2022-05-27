@@ -1,8 +1,16 @@
 <div class="authPopUp">
   <div class="profilesContent">
-    <div class="userProfiles" *ngFor="let profile of profiles" [routerLink]="['/profile/',profile.name]">
-      <img src="assets/images/userImg.png">
-      <h2>{{profile.name}}</h2>
+    <div class="userProfiles" *ngFor="let profile of profiles">
+      <div class="profile-content" *ngIf="profile.name == 'Admin'" [routerLink]="['/admin']">
+        <img src="assets/images/userImg.png">
+        <h2>{{profile.name}}</h2>
+      </div>
+
+      <div class="profile-content" *ngIf="profile.name !== 'Admin'" [routerLink]="['/profile/', profile.name]">
+        <img src="assets/images/userImg.png">
+        <h2>{{profile.name}}</h2>
+      </div>
+
     </div>
   </div>
 </div>
