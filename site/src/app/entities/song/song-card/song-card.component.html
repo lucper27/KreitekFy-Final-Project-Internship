@@ -1,18 +1,18 @@
 
 
 <div class="card" *ngIf="song">
-  <div class="card-image">
+  <div class="card-image" (click)="openMe()">
     <img class="card-img" [src]="song.image" [alt]="song.name">
    <!-- <div class="card-img-overlay">
       <h4 class="card-title">{{song.artist!.artistName}}</h4>
     </div>-->
   </div>
 
-  <div *ngIf="admin" class="close">
+  <div *ngIf="admin" (click)="deleteMe()" class="close">
     <i class="fa-solid fa-xmark"></i>
   </div>
 
-  <div class="card-body">
+  <div class="card-body" (click)="openMe()">
     <h4 class="card-title">{{song.name}}</h4>
     <p class="card-text">{{song.album.title}}</p>
   </div>

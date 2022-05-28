@@ -31,7 +31,7 @@ export class SongService {
   }
 
   public deleteSong(songId: number): Observable<any> {
-    const urlEndpoint: string = "http://localhost:8080/stream/songs" + songId;
+    const urlEndpoint: string = "http://localhost:8080/stream/songs/" + songId;
     return this.http.delete<any>(urlEndpoint);
   }
 }
