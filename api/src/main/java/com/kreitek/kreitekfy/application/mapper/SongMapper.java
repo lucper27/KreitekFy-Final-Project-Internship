@@ -11,28 +11,26 @@ import org.mapstruct.Mapping;
 public interface SongMapper extends EntityMapper<SongAdminDTO, Song> {
 
     @Override
-    @Mapping(source="albumId",target = "album")
-    @Mapping(source="artistId",target = "artist")
-    @Mapping(source="styleId",target = "style")
+    @Mapping(source="album.id",target = "album")
+    @Mapping(source="artist.id",target = "artist")
+    @Mapping(source="style.id",target = "style")
     Song toEntity(SongAdminDTO dto);
 
-//
-//    @Mapping(source="albumId",target = "album")
-//    @Mapping(source="artistId",target = "artist")
+
+//    @Mapping(source="album.id",target = "album")
+//    @Mapping(source="artist.id",target = "artist")
 //    @Mapping(target="style",ignore = true)
 //    @Mapping(target="duration", ignore = true)
 //    @Mapping(target="inclusionDate", ignore = true)
 //    Song toEntity(SongSimpleDTO dto);
 
 
-    @Override
-    @Mapping(source="album.id",target = "albumId")
-    @Mapping(source="artist.id",target = "artistId")
-    @Mapping(source="style.id",target = "styleId")
-    SongAdminDTO toDto(Song entity);
+//    @Override
+//    @Mapping(source="album.id",target = "album")
+//    @Mapping(source="artist.id",target = "artist")
+//    @Mapping(source="style.id",target = "style")
+//    SongAdminDTO toDto(Song entity);
 
-    @Mapping(source="album.id",target = "albumId")
-    @Mapping(source="artist.id",target = "artistId")
     SongSimpleDTO toSimpleDto(Song entity);
 
 

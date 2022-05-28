@@ -4,8 +4,8 @@ public class SongSimpleDTO {
     private Long id;
     private String name;
     private byte[] image;
-    private Long albumId;
-    private Long artistId;
+    private AlbumDTO album;
+    private ArtistDTO artist;
 
     public SongSimpleDTO() {
     }
@@ -34,19 +34,19 @@ public class SongSimpleDTO {
         this.image = image;
     }
 
-    public Long getAlbumId() {
-        return albumId;
+    public AlbumDTO getAlbum() {
+        return album;
     }
 
-    public void setAlbumId(Long albumId) {
-        this.albumId = albumId;
+    public void setAlbum(AlbumDTO album) {
+        this.album = album;
     }
 
-    public Long getArtistId() {
-        return artistId;
+    public ArtistDTO getArtist() {
+        return artist;
     }
 
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
+    public void setArtist(ArtistDTO artist) {
+        this.artist = artist;
     }
 }

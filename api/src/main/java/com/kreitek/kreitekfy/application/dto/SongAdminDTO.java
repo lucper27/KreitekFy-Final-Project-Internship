@@ -1,4 +1,8 @@
 package com.kreitek.kreitekfy.application.dto;
+import com.kreitek.kreitekfy.domain.entity.Album;
+import com.kreitek.kreitekfy.domain.entity.Artist;
+import com.kreitek.kreitekfy.domain.entity.Style;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,11 +18,11 @@ public class SongAdminDTO implements Serializable {
 
     private byte[] image;
 
-    private Long albumId;
+    private AlbumDTO album;
 
-    private Long artistId;
+    private ArtistDTO artist;
 
-    private Long styleId;
+    private StyleDTO style;
 
     public SongAdminDTO() {
     }
@@ -55,35 +59,36 @@ public class SongAdminDTO implements Serializable {
         this.inclusionDate = inclusionDate;
     }
 
-    public Long getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(Long albumId) {
-        this.albumId = albumId;
-    }
-
-    public Long getArtistId() {
-        return artistId;
-    }
-
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
-    }
-
-    public Long getStyleId() {
-        return styleId;
-    }
-
-    public void setStyleId(Long styleId) {
-        this.styleId = styleId;
-    }
-
     public byte[] getImage() {
         return image;
     }
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+
+    public AlbumDTO getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(AlbumDTO album) {
+        this.album = album;
+    }
+
+    public ArtistDTO getArtist() {
+        return artist;
+    }
+
+    public void setArtist(ArtistDTO artist) {
+        this.artist = artist;
+    }
+
+    public StyleDTO getStyle() {
+        return style;
+    }
+
+    public void setStyle(StyleDTO style) {
+        this.style = style;
     }
 }
