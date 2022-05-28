@@ -13,6 +13,6 @@ export class SongCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+  }
 }

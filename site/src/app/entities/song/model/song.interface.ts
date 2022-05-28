@@ -4,12 +4,24 @@ export interface ISong {
   image?: string;
   duration: number;
   rating?: number;
-  artistName: string;
-  artistId?: number;
-  albumName: string;
-  albumId?: number;
-  styleName: string;
-  styleId?: number;
+  artist: IArtist;
+  album: IAlbum;
+  style: IStyle;
   reproductions?: number;
-  added?: Date ;
+  inclusionDate?: Date;
+}
+
+export interface IArtist {
+  name?: string;
+  id: number;
+}
+
+export interface IAlbum {
+  title?: string;
+  id: number;
+}
+
+export interface IStyle {
+  name?: string;
+  id: number;
 }

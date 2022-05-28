@@ -1,12 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ISong} from "../../entities/song/model/song.interface";
-import {IArtist} from "../../shared/interfaces/artist.interface";
-import {IAlbum} from "../../shared/interfaces/album.interface";
-import {IStyle} from "../../shared/interfaces/style.interface";
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {IAlbum, IArtist, ISong, IStyle} from "../../entities/song/model/song.interface";
 import {ArtistService} from "../../shared/services/artist.service";
 import {AlbumService} from "../../shared/services/album.service";
 import {StyleService} from "../../shared/services/style.service";
 import {SongService} from "../../entities/song/service/song.service";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-form',
@@ -14,36 +12,52 @@ import {SongService} from "../../entities/song/service/song.service";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() songId?: string;
-  @Input() isEditable = false;
+  @Input() songId?: number;
 
   song: ISong = {
     name: '',
     duration: 0,
-    artistName: '',
-    albumName: '',
-    styleName: '',
+    artist: {
+      name: '',
+      id: 0
+    },
+    album: {
+      title: '',
+      id: 0
+    },
+    style: {
+      name: '',
+      id: 0
+    },
   }
+  selectedArtist: IArtist = {
+  name: '',
+    id: 0
+};
 
-  selectedArtist?: IArtist;
   artists: IArtist[] = [];
   selectedAlbum?: IAlbum;
   albums: IAlbum[] = [];
-  selectedStyle?: IStyle;
+  selectedStyle: IStyle = {
+    name: '',
+    id: 0
+  };
+
   styles: IStyle[] = [];
 
   constructor(private artistService: ArtistService,
               private albumService: AlbumService,
               private styleService: StyleService,
-              private songService: SongService) { }
+              private songService: SongService,
+              public modalRef: MatDialogRef<FormComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: number,
+              ) { }
 
   ngOnInit(): void {
-   if (this.isEditable) {
-    this.songService.getSongById(this.songId).subscribe({
-      next: singleSong => {this.song = singleSong},
-      error: err => {console.log(err)}
-    })
-   }
+    if(this.data) {
+      this.songId = this.data;
+      this.loadSongById();
+    }
   }
 
   getAllArtist($event: any) {
@@ -52,7 +66,7 @@ export class FormComponent implements OnInit {
       artistSearch = $event.query;
     }
     this.artistService.getAllArtists(artistSearch).subscribe({
-      next: artistsFiltered => {
+      next: (artistsFiltered: any) => {
         this.artists = artistsFiltered;
       },
       error: err => {console.log(err)}
@@ -60,8 +74,9 @@ export class FormComponent implements OnInit {
   }
 
   artistSelected() {
-    this.song!.artistId = this.selectedArtist!.artistId;
-    this.song!.artistName = this.selectedArtist!.artistName;
+    this.song!.artist.id = this.selectedArtist!.id;
+    console.log(this.song.artist.id);
+    this.song!.artist.name = this.selectedArtist!.name;
   }
 
   getAllAlbums($event: any) {
@@ -70,7 +85,7 @@ export class FormComponent implements OnInit {
       albumSearch = $event.query;
     }
     this.albumService.getAllAlbums(albumSearch).subscribe({
-      next: albumFiltered => {
+      next: (albumFiltered: any) => {
         this.albums = albumFiltered;
       },
       error: err => {console.log(err)}
@@ -78,13 +93,13 @@ export class FormComponent implements OnInit {
   }
 
   albumSelected() {
-    this.song!.albumId = this.selectedAlbum!.albumId;
-    this.song!.albumName = this.selectedAlbum!.albumName;
+    this.song!.album.id = this.selectedAlbum!.id;
+    this.song!.album.title = this.selectedAlbum!.title;
   }
 
-  syleSelected() {
-    this.song!.styleId = this.selectedStyle!.styleId;
-    this.song!.styleName = this.selectedStyle!.styleName;
+  styleSelected() {
+    this.song!.style.id = this.selectedStyle!.id;
+    this.song!.style.name = this.selectedStyle!.name;
   }
 
   getAllStyles($event: any) {
@@ -93,7 +108,7 @@ export class FormComponent implements OnInit {
       styleSearch = $event.query;
     }
     this.styleService.getAllStyles(styleSearch).subscribe({
-      next: stylesFiltered => {
+      next: (stylesFiltered: any) => {
         this.styles = stylesFiltered;
       },
       error: err => {console.log(err)}
@@ -101,25 +116,56 @@ export class FormComponent implements OnInit {
   }
 
   saveSong() {
-    if (!this.isEditable) {
+    if (!this.songId) {
       this.saveNewSong();
     }
-    if (this.isEditable) {
+    if (this.songId) {
       this.editCurrentSong();
     }
+    console.log(this.song);
   }
 
   private saveNewSong() {
-    this.songService.insertSong(this.song).subscribe({
-      next: (newSong => {console.log('Insertado correctamente', newSong)}),
+    const newSong: ISong = {
+      name: this.song.name,
+      duration: this.song.duration,
+      album: {
+        id: this.song.album.id
+      },
+      style: {
+        id: this.song.style.id
+      },
+      artist: {
+        id: this.song.artist.id
+      },
+      inclusionDate: new Date()
+    }
+
+    this.songService.insertSong(newSong).subscribe({
+      next: (newSong => {}),
       error: (err => {console.log(err)})
     })
+    this.modalRef.close()
   }
 
   private editCurrentSong() {
     this.songService.updateSong(this.song).subscribe({
-      next: (updatedSong => {console.log('Insertado correctamente', updatedSong)}),
+      next: (updatedSong => {}),
       error: (err => {console.log(err)})
     })
+
+    this.modalRef.close()
+  }
+
+  private loadSongById() {
+    this.songService.getSongById(this.songId).subscribe({
+      next: (singleSong: any) => {this.song = singleSong;
+        console.log(singleSong);
+        this.selectedAlbum = this.song.album;
+        this.selectedStyle = this.song.style;
+        this.selectedArtist = this.song.artist},
+      error: err => {console.log(err)}
+    })
+
   }
 }

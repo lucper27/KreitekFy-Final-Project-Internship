@@ -16,7 +16,7 @@ export class SongService {
   }
 
   public getSongById(songId: any): Observable<ISong> {
-    const urlEndpoint: string = "http://localhost:8080/stream/song/items/" + songId;
+    const urlEndpoint: string = "http://localhost:8080/stream/songs/" + songId;
     return this.http.get<ISong>(urlEndpoint);
   }
 
@@ -36,11 +36,3 @@ export class SongService {
   }
 }
 
-
-/*public getAllItems(page: number, size: number, sort: string, filters?: string): Observable<Item[]>{
-  let urlEndpoint: string = "http://localhost:8080/store/items?page=" + page + "&size=" + size + "&sort=" + sort;
-if(filters){
-  urlEndpoint = urlEndpoint + "&filter=" + filters;
-}
-return this.http.get<Item[]>(urlEndpoint);
-}*/

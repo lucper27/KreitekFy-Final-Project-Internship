@@ -14,6 +14,8 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import {InputTextModule} from "primeng/inputtext";
 import {SongCardComponent} from "./entities/song/song-card/song-card.component";
 import {SongPlayerListComponent} from "./entities/song/player/song-player-list/song-player-list.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import {SongPlayerListComponent} from "./entities/song/player/song-player-list/s
     HttpClientModule,
     AutoCompleteModule,
     FormsModule,
-    InputTextModule
+    InputTextModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ISong} from "../../model/song.interface";
+import {SongService} from "../../service/song.service";
+import {MatDialog} from "@angular/material/dialog";
+import {FormComponent} from "../../../../layout/form/form.component";
 
 @Component({
   selector: 'app-song-admin-list',
@@ -6,25 +10,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./song-admin-list.component.scss']
 })
 export class SongAdminListComponent implements OnInit {
-  songList: any = [];
+  songList: ISong[] = [];
 
-  constructor() { }
+  constructor(private songService: SongService,
+              private modal: MatDialog,) { }
 
   ngOnInit(): void {
     this.getSongs();
   }
 
   private getSongs() {
-    const song = {
-      "img": "https://dice-i-scdn-co.imgix.net/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6",
-      "artistName": "Ed Sheran",
-      "name": "Bad Habits",
-      "description": "Lorem ipsu vitao asd macniantial when du sremake te table guen win t game"
-    };
+    this.songService.getAllSongs().subscribe({
+      next: ((allSongs: any) => {this.songList = allSongs.content}),
+      error:(err => {console.log(err)})
+    })
+  }
 
-    for (let i = 0; i < 50; i++) {
-      this.songList.push(song)
-    }
-    console.log(this.songList);
+  createNewSong() {
+    const modalRef = this.modal.open(FormComponent);
+
+    modalRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    })
+    modalRef.afterClosed().subscribe(result => {
+      this.getSongs();
+    })
+  }
+
+  openModal(id: number) {
+    const modalRef = this.modal.open(FormComponent, {
+      data: id,
+    });
+    modalRef.afterClosed().subscribe(result => {
+      this.getSongs();
+    })
+
   }
 }

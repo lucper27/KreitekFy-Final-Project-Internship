@@ -1,10 +1,12 @@
+
+<button (click)="createNewSong()">Crear</button>
 <div class="container-fluid">
   <div class="row justify-content-evenly">
 
     <h1 class="titleRow">Listado de canciones<hr></h1>
 
     <div class="col" *ngFor="let song of songList">
-      <app-song-card class="songCard" [admin]="true" [song]="song"></app-song-card>
+      <app-song-card class="songCard" [admin]="true" [song]="song" (click)="openModal(song!.id!)"></app-song-card>
     </div>
 
 
