@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-image">
+    <img class="card-img" [src]="song!.image" [alt]="song!.name">
+    <div class="card-img-overlay">
+      <h4 class="card-title">{{song!.artistName}}</h4>
+    </div>
+  </div>
+
+  <div *ngIf="admin" class="close">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+
+  <div class="card-body">
+    <h4 class="card-title">{{song!.name}}</h4>
+    <p class="card-text">{{song!.duration}}</p>
+  </div>
+</div>

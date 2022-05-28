@@ -1,4 +1,11 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
-public interface AlbumRepository {
+import com.kreitek.kreitekfy.domain.entity.Album;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface AlbumRepository extends JpaRepository<Album, Long> {
+
+    List<Album> findByTitleContainsIgnoreCase(String partialTitle);
 }
