@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ISong} from "../model/song.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-song-card',
@@ -9,10 +10,24 @@ import {ISong} from "../model/song.interface";
 export class SongCardComponent implements OnInit {
   @Input() song?: ISong;
   @Input() admin: boolean = false;
+  @Output() delete: EventEmitter<number> = new EventEmitter();
+  @Output() editSongModal: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  deleteMe () {
+    this.delete.emit(this.song?.id);
+  }
+
+  openMe() {
+    if (this.admin) {
+      this.editSongModal.emit(this.song?.id);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

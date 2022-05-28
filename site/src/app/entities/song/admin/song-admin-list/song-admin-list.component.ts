@@ -12,8 +12,10 @@ import {FormComponent} from "../../../../layout/form/form.component";
 export class SongAdminListComponent implements OnInit {
   songList: ISong[] = [];
 
-  constructor(private songService: SongService,
-              private modal: MatDialog,) { }
+  constructor(
+    private songService: SongService,
+    private modal: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.getSongs();
@@ -26,24 +28,28 @@ export class SongAdminListComponent implements OnInit {
     })
   }
 
-  createNewSong() {
+  createSongModal() {
     const modalRef = this.modal.open(FormComponent);
 
-    modalRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    })
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })
   }
 
-  openModal(id: number) {
+  editSongModal(songId: number) {
     const modalRef = this.modal.open(FormComponent, {
-      data: id,
+      data: songId,
     });
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })
+
+  }
+
+  deleteSong(songId: number) {
+    this.songService.deleteSong(songId).subscribe(res => {
+      this.getSongs();
+    });
 
   }
 }
