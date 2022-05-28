@@ -16,6 +16,7 @@ import {SongService} from "../../entities/song/service/song.service";
 export class FormComponent implements OnInit {
   @Input() songId?: string;
   @Input() isEditable = false;
+
   song: ISong = {
     name: '',
     duration: 0,
