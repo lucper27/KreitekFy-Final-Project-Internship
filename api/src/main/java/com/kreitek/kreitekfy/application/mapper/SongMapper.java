@@ -6,6 +6,8 @@ import com.kreitek.kreitekfy.domain.entity.Song;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 
 @Mapper(componentModel = "spring", uses = {AlbumMapper.class,ArtistMapper.class,StyleMapper.class})
 public interface SongMapper extends EntityMapper<SongAdminDTO, Song> {
@@ -33,7 +35,7 @@ public interface SongMapper extends EntityMapper<SongAdminDTO, Song> {
 
     SongSimpleDTO toSimpleDto(Song entity);
 
-
+    List<SongSimpleDTO> toSimpleDto(List<Song> songs);
 
 
 }

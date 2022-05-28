@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -53,8 +55,11 @@ public class SongPersistenceImpl implements SongPersistence {
         this.songRepository.deleteById(songId);
     }
 
-//    @Override
-//    public Page<Song> findAll(Pageable pageable, String filter) {
-//        return null;
-//    }
+    @Override
+    public List<Song> getAllByDateSorted() {
+        List<Song> songsByDate = this.songRepository.findAllByInclusionDateBeforeOrderByInclusionDateDesc(new Date());
+        System.out.println(songsByDate);
+        return songsByDate;
+    }
+
 }

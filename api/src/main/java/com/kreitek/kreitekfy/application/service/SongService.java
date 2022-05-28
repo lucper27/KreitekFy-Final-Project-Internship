@@ -5,6 +5,7 @@ import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface SongService {
@@ -15,5 +16,7 @@ public interface SongService {
     Optional<SongAdminDTO> getSongById(Long songId);
     SongAdminDTO saveSong(SongAdminDTO songAdminDTO);
     void deleteSong(Long songId);
+
+    List<SongSimpleDTO> getAllByDateSorted();
 
 }
