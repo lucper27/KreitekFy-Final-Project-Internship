@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.application.mapper;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,14 +16,26 @@ public interface SongMapper extends EntityMapper<SongAdminDTO, Song> {
     @Mapping(source="styleId",target = "style")
     Song toEntity(SongAdminDTO dto);
 
+//
+//    @Mapping(source="albumId",target = "album")
+//    @Mapping(source="artistId",target = "artist")
+//    @Mapping(target="style",ignore = true)
+//    @Mapping(target="duration", ignore = true)
+//    @Mapping(target="inclusionDate", ignore = true)
+//    Song toEntity(SongSimpleDTO dto);
+
+
     @Override
-    @Mapping(source="album.title",target = "albumTitle")
     @Mapping(source="album.id",target = "albumId")
-    @Mapping(source="artist.name",target = "artistName")
     @Mapping(source="artist.id",target = "artistId")
-    @Mapping(source="style.name",target = "styleName")
     @Mapping(source="style.id",target = "styleId")
     SongAdminDTO toDto(Song entity);
+
+    @Mapping(source="album.id",target = "albumId")
+    @Mapping(source="artist.id",target = "artistId")
+    SongSimpleDTO toSimpleDto(Song entity);
+
+
 
 
 }

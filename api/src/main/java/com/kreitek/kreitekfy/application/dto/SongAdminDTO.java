@@ -14,15 +14,9 @@ public class SongAdminDTO implements Serializable {
 
     private byte[] image;
 
-    private String albumTitle;
-
     private Long albumId;
 
-    private String artistName;
-
     private Long artistId;
-
-    private String styleName;
 
     private Long styleId;
 
@@ -59,30 +53,6 @@ public class SongAdminDTO implements Serializable {
 
     public void setInclusionDate(Date inclusionDate) {
         this.inclusionDate = inclusionDate;
-    }
-
-    public String getAlbumTitle() {
-        return albumTitle;
-    }
-
-    public void setAlbumTitle(String albumTitle) {
-        this.albumTitle = albumTitle;
-    }
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public String getStyleName() {
-        return styleName;
-    }
-
-    public void setStyleName(String styleName) {
-        this.styleName = styleName;
     }
 
     public Long getAlbumId() {

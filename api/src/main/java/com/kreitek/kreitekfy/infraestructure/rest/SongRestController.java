@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.infraestructure.rest;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.application.service.SongService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,38 +22,30 @@ public class SongRestController {
 
     @CrossOrigin
     @GetMapping(value = "/songs", produces = "application/json")
-    ResponseEntity<Page<SongAdminDTO>> getAllSongs(Pageable pageable) {
-        Page<SongAdminDTO> songs = this.songService.getAllSongs(pageable);
-        return new ResponseEntity<Page<SongAdminDTO>>(songs, HttpStatus.OK);
+    ResponseEntity<Page<SongSimpleDTO>> getAllSongs(Pageable pageable) {
+        Page<SongSimpleDTO> songs = this.songService.getAllSongs(pageable);
+        return new ResponseEntity<Page<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping(value = "/albums/{idAlbum}/songs", produces = "application/json")
-    ResponseEntity<Page<SongAdminDTO>> getAllSongsFromAlbum(@PathVariable Long idAlbum, Pageable pageable) {
-        Page<SongAdminDTO> songs = this.songService.getAllSongsByAlbum(pageable, idAlbum);
+    ResponseEntity<Page<SongSimpleDTO>> getAllSongsFromAlbum(@PathVariable Long idAlbum, Pageable pageable) {
+        Page<SongSimpleDTO> songs = this.songService.getAllSongsByAlbum(pageable, idAlbum);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
     @CrossOrigin
     @GetMapping(value = "/artists/{idArtist}/songs", produces = "application/json")
-    ResponseEntity<Page<SongAdminDTO>> getAllSongsFromArtist(@PathVariable Long idArtist, Pageable pageable) {
-        Page<SongAdminDTO> songs = this.songService.getAllSongsByArtist(pageable, idArtist);
+    ResponseEntity<Page<SongSimpleDTO>> getAllSongsFromArtist(@PathVariable Long idArtist, Pageable pageable) {
+        Page<SongSimpleDTO> songs = this.songService.getAllSongsByArtist(pageable, idArtist);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping(value = "/styles/{idStyle}/songs", produces = "application/json")
-    ResponseEntity<Page<SongAdminDTO>> getAllSongsFromStyle(@PathVariable Long idStyle, Pageable pageable) {
-        Page<SongAdminDTO> songs = this.songService.getAllSongsByAlbum(pageable, idStyle);
+    ResponseEntity<Page<SongSimpleDTO>> getAllSongsFromStyle(@PathVariable Long idStyle, Pageable pageable) {
+        Page<SongSimpleDTO> songs = this.songService.getAllSongsByAlbum(pageable, idStyle);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
-
-//    @CrossOrigin
-//    @GetMapping(value = "/items", produces = "application/json")
-//    public ResponseEntity<Page<ItemDTO>> getItemsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
-//
-//        Page<ItemDTO> items = this.itemService.getItemsByCriteriaStringPaged(pageable, filter);
-//        return new ResponseEntity<Page<ItemDTO>>(items, HttpStatus.OK);
-//    }
 
     @CrossOrigin
     @PostMapping(value = "/songs", produces = "application/json", consumes = "application/json")
@@ -78,7 +70,7 @@ public class SongRestController {
 
     @CrossOrigin
     @GetMapping(value = "/songs/{songId}")
-    ResponseEntity<SongAdminDTO> getItemById(@PathVariable Long songId) {
+    ResponseEntity<SongAdminDTO> getSongById(@PathVariable Long songId) {
         Optional<SongAdminDTO> song = this.songService.getSongById(songId);
 
         if (song.isPresent()) {

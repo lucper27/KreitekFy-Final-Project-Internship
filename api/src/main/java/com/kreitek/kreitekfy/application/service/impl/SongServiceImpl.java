@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.application.service.impl;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.application.mapper.SongMapper;
 import com.kreitek.kreitekfy.application.service.SongService;
 import com.kreitek.kreitekfy.domain.entity.Song;
@@ -26,27 +27,27 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Page<SongAdminDTO> getAllSongs(Pageable pageable) {
+    public Page<SongSimpleDTO> getAllSongs(Pageable pageable) {
         Page<Song> songPage= this.persistence.getAllSongs(pageable);
-        return songPage.map(mapper::toDto);
+        return songPage.map(mapper::toSimpleDto);
     }
 
     @Override
-    public Page<SongAdminDTO> getAllSongsByAlbum(Pageable pageable,Long albumId) {
+    public Page<SongSimpleDTO> getAllSongsByAlbum(Pageable pageable,Long albumId) {
         Page<Song> songPage= this.persistence.getAllSongsByAlbum(pageable, albumId);
-        return songPage.map(mapper::toDto);
+        return songPage.map(mapper::toSimpleDto);
     }
 
     @Override
-    public Page<SongAdminDTO> getAllSongsByArtist(Pageable pageable, Long artistId) {
+    public Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable, Long artistId) {
         Page<Song> songPage= this.persistence.getAllSongsByArtist(pageable, artistId);
-        return songPage.map(mapper::toDto);
+        return songPage.map(mapper::toSimpleDto);
     }
 
     @Override
-    public Page<SongAdminDTO> getAllSongsByStyle(Pageable pageable,Long styleId) {
+    public Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId) {
         Page<Song> songPage = this.persistence.getAllSongsByStyle(pageable, styleId);
-        return songPage.map(mapper::toDto);
+        return songPage.map(mapper::toSimpleDto);
     }
 
     @Override
@@ -55,7 +56,6 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    @Transactional
     public SongAdminDTO saveSong(SongAdminDTO songAdminDTO) {
         Song songSaved = this.persistence.saveSong(this.mapper.toEntity(songAdminDTO));
         return this.mapper.toDto(songSaved);
@@ -66,9 +66,5 @@ public class SongServiceImpl implements SongService {
         this.persistence.deleteSong(songId);
     }
 
-//    @Override
-//    public Page<SongAdminDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter) {
-//        Page<Song> songPage = this.persistence.findAll(pageable, filter);
-//        return songPage.map(mapper::toDto);
-//    }
+
 }
