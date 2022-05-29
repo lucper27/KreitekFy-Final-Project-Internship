@@ -28,28 +28,28 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Page<SongSimpleDTO> getAllSongs(Pageable pageable) {
-        Page<Song> songPage= this.persistence.getAllSongs(pageable);
+    public Page<SongSimpleDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter) {
+        Page<Song> songPage= this.persistence.getAllSongs(pageable, filter);
         return songPage.map(mapper::toSimpleDto);
     }
-
-    @Override
-    public Page<SongSimpleDTO> getAllSongsByAlbum(Pageable pageable,Long albumId) {
-        Page<Song> songPage= this.persistence.getAllSongsByAlbum(pageable, albumId);
-        return songPage.map(mapper::toSimpleDto);
-    }
-
-    @Override
-    public Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable, Long artistId) {
-        Page<Song> songPage= this.persistence.getAllSongsByArtist(pageable, artistId);
-        return songPage.map(mapper::toSimpleDto);
-    }
-
-    @Override
-    public Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId) {
-        Page<Song> songPage = this.persistence.getAllSongsByStyle(pageable, styleId);
-        return songPage.map(mapper::toSimpleDto);
-    }
+//
+//    @Override
+//    public Page<SongSimpleDTO> getAllSongsByAlbum(Pageable pageable,Long albumId) {
+//        Page<Song> songPage= this.persistence.getAllSongsByAlbum(pageable, albumId);
+//        return songPage.map(mapper::toSimpleDto);
+//    }
+//
+//    @Override
+//    public Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable, Long artistId) {
+//        Page<Song> songPage= this.persistence.getAllSongsByArtist(pageable, artistId);
+//        return songPage.map(mapper::toSimpleDto);
+//    }
+//
+//    @Override
+//    public Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId) {
+//        Page<Song> songPage = this.persistence.getAllSongsByStyle(pageable, styleId);
+//        return songPage.map(mapper::toSimpleDto);
+//    }
 
     @Override
     public Optional<SongAdminDTO> getSongById(Long songId) {

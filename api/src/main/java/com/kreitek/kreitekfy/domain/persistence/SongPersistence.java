@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SongPersistence {
-    Page<Song> getAllSongs(Pageable pageable);
-    Page<Song> getAllSongsByAlbum(Pageable pageable,Long albumId);
-    Page<Song> getAllSongsByArtist(Pageable pageable,Long artistId);
-    Page<Song> getAllSongsByStyle(Pageable pageable,Long styleId);
+    Page<Song> getAllSongs(Pageable pageable,String filter);
+//    Page<Song> getAllSongsByAlbum(Pageable pageable,Long albumId);
+//    Page<Song> getAllSongsByArtist(Pageable pageable,Long artistId);
+//    Page<Song> getAllSongsByStyle(Pageable pageable,Long styleId);
     Optional<Song> getSongById(Long songId);
     Song saveSong(Song song);
     void deleteSong(Long songId);

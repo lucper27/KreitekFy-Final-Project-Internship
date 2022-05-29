@@ -2,6 +2,8 @@ package com.kreitek.kreitekfy.infraestructure.persistence;
 
 import com.kreitek.kreitekfy.domain.entity.Song;
 import com.kreitek.kreitekfy.domain.persistence.SongPersistence;
+import com.kreitek.kreitekfy.infraestructure.specs.SongSpecification;
+import com.kreitek.kreitekfy.infraestructure.specs.shared.SearchCriteriaHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,24 +23,25 @@ public class SongPersistenceImpl implements SongPersistence {
     }
 
     @Override
-    public Page<Song> getAllSongs(Pageable pageable) {
-        return this.songRepository.findAll(pageable);
+    public Page<Song> getAllSongs(Pageable pageable, String filters) {
+        SongSpecification specification = new SongSpecification(SearchCriteriaHelper.fromFilterString(filters));
+        return this.songRepository.findAll(specification,pageable);
     }
-
-    @Override
-    public Page<Song> getAllSongsByAlbum(Pageable pageable, Long albumId) {
-        return this.songRepository.findAllByAlbumId(albumId, pageable);
-    }
-
-    @Override
-    public Page<Song> getAllSongsByArtist(Pageable pageable, Long artistId) {
-        return this.songRepository.findAllByArtistId(artistId, pageable);
-    }
-
-    @Override
-    public Page<Song> getAllSongsByStyle(Pageable pageable, Long styleId) {
-        return this.songRepository.findAllByStyleId(styleId,pageable);
-    }
+//
+//    @Override
+//    public Page<Song> getAllSongsByAlbum(Pageable pageable, Long albumId) {
+//        return this.songRepository.findAllByAlbumId(albumId, pageable);
+//    }
+//
+//    @Override
+//    public Page<Song> getAllSongsByArtist(Pageable pageable, Long artistId) {
+//        return this.songRepository.findAllByArtistId(artistId, pageable);
+//    }
+//
+//    @Override
+//    public Page<Song> getAllSongsByStyle(Pageable pageable, Long styleId) {
+//        return this.songRepository.findAllByStyleId(styleId,pageable);
+//    }
 
     @Override
     public Optional<Song> getSongById(Long songId) {

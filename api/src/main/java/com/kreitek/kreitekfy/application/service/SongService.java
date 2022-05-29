@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SongService {
-    Page<SongSimpleDTO> getAllSongs(Pageable pageable);
-    Page<SongSimpleDTO> getAllSongsByAlbum(Pageable pageable,Long albumId);
-    Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable,Long artistId);
-    Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId);
+
+//    Page<SongSimpleDTO> getAllSongsByAlbum(Pageable pageable,Long albumId);
+//    Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable,Long artistId);
+//    Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId);
     Optional<SongAdminDTO> getSongById(Long songId);
     SongAdminDTO saveSong(SongAdminDTO songAdminDTO);
     void deleteSong(Long songId);
+    Page<SongSimpleDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter);
 
     List<SongSimpleDTO> getAllByDateSorted();
 
