@@ -57,7 +57,7 @@ public class SongPersistenceImpl implements SongPersistence {
 
     @Override
     public List<Song> getAllByDateSorted() {
-        List<Song> songsByDate = this.songRepository.findAllByInclusionDateBeforeOrderByInclusionDateDesc(new Date());
+        List<Song> songsByDate = this.songRepository.findByDateSorted();
         System.out.println(songsByDate);
         return songsByDate;
     }
