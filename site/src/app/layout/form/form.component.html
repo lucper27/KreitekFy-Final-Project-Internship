@@ -34,6 +34,7 @@
 
 
     </div>
+    <input type="file" id="imagen" (change)="selectImage($event);">
     <button type="button" class="btn btn-primary" (click)="saveSong()" [disabled]="songForm.invalid">Save changes</button>
 
   </form>

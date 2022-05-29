@@ -5,6 +5,7 @@ import {AlbumService} from "../../shared/services/album.service";
 import {StyleService} from "../../shared/services/style.service";
 import {SongService} from "../../entities/song/service/song.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ImageconverterService} from "../../shared/utils/imageconverter.service";
 
 @Component({
   selector: 'app-form',
@@ -51,6 +52,7 @@ export class FormComponent implements OnInit {
               private songService: SongService,
               public modalRef: MatDialogRef<FormComponent>,
               @Inject(MAT_DIALOG_DATA) public data: number,
+              private imageConverter: ImageconverterService
               ) { }
 
   ngOnInit(): void {
@@ -166,6 +168,10 @@ export class FormComponent implements OnInit {
         this.selectedArtist = this.song.artist},
       error: err => {console.log(err)}
     })
+  }
 
+  selectImage($event: any): void {
+    this.song.image = this.imageConverter.includeImageInItem($event);
+    console.log(this.song.image);
   }
 }
