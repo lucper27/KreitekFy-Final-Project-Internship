@@ -12,6 +12,8 @@ export class SongCardComponent implements OnInit {
   @Input() admin: boolean = false;
   @Output() delete: EventEmitter<number> = new EventEmitter();
   @Output() editSongModal: EventEmitter<number> = new EventEmitter();
+  @Output() openSongDetail: EventEmitter<number> = new EventEmitter();
+
 
   constructor(
     private router: Router
@@ -27,7 +29,7 @@ export class SongCardComponent implements OnInit {
     if (this.admin) {
       this.editSongModal.emit(this.song?.id);
     } else {
-      this.router.navigate(['/']);
+      this.openSongDetail.emit(this.song?.id)
     }
   }
 }
