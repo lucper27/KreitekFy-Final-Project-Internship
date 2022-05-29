@@ -1,6 +1,8 @@
 package com.kreitek.kreitekfy.application.dto;
 
-public class SongSimpleDTO {
+import java.io.Serializable;
+
+public class SongSimpleDTO implements Serializable {
     private Long id;
     private String name;
     private byte[] image;

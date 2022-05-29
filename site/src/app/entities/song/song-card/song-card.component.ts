@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ISong} from "../model/song.interface";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-song-card',
@@ -15,9 +14,7 @@ export class SongCardComponent implements OnInit {
   @Output() openSongDetail: EventEmitter<number> = new EventEmitter();
 
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor( ) { }
 
   ngOnInit(): void { }
 

@@ -25,3 +25,27 @@
   }
 
 }
+
+.row {
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      color: white;
+      font-weight: 400;
+    }
+
+    button {
+    }
+  }
+
+  .list-header:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100px;
+    background-color: white;
+    margin-top: -2px;
+  }
+}

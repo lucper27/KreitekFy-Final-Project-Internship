@@ -1,10 +1,8 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {IAlbum, IArtist, ISong, IStyle} from "../../entities/song/model/song.interface";
-import {ArtistService} from "../../shared/services/artist.service";
-import {AlbumService} from "../../shared/services/album.service";
-import {StyleService} from "../../shared/services/style.service";
 import {SongService} from "../../entities/song/service/song.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ImageconverterService} from "../../shared/utils/imageconverter.service";
 
 @Component({
   selector: 'app-form',
@@ -13,45 +11,20 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class FormComponent implements OnInit {
   @Input() songId?: number;
+  song!: ISong;
 
-  song: ISong = {
-    name: '',
-    duration: 0,
-    artist: {
-      name: '',
-      id: 0
-    },
-    album: {
-      title: '',
-      id: 0
-    },
-    style: {
-      name: '',
-      id: 0
-    },
-  }
-  selectedArtist: IArtist = {
-  name: '',
-    id: 0
-};
+  album?: IAlbum;
+  style?: IStyle;
+  artist?: IArtist;
 
-  artists: IArtist[] = [];
-  selectedAlbum?: IAlbum;
-  albums: IAlbum[] = [];
-  selectedStyle: IStyle = {
-    name: '',
-    id: 0
-  };
 
-  styles: IStyle[] = [];
 
-  constructor(private artistService: ArtistService,
-              private albumService: AlbumService,
-              private styleService: StyleService,
-              private songService: SongService,
-              public modalRef: MatDialogRef<FormComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: number,
-              ) { }
+  constructor(
+    private songService: SongService,
+    public modalRef: MatDialogRef<FormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number,
+    private imageConverter: ImageconverterService
+  ) { }
 
   ngOnInit(): void {
     if(this.data) {
@@ -60,80 +33,45 @@ export class FormComponent implements OnInit {
     }
   }
 
-  getAllArtist($event: any) {
-    let artistSearch: string | undefined;
-    if ($event?.query) {
-      artistSearch = $event.query;
-    }
-    this.artistService.getAllArtists(artistSearch).subscribe({
-      next: (artistsFiltered: any) => {
-        this.artists = artistsFiltered;
-      },
-      error: err => {console.log(err)}
-    })
-  }
-
-  artistSelected() {
-    this.song!.artist.id = this.selectedArtist!.id;
-    console.log(this.song.artist.id);
-    this.song!.artist.name = this.selectedArtist!.name;
-  }
-
-  getAllAlbums($event: any) {
-   let albumSearch: string | undefined;
-    if ($event?.query) {
-      albumSearch = $event.query;
-    }
-    this.albumService.getAllAlbums(albumSearch).subscribe({
-      next: (albumFiltered: any) => {
-        this.albums = albumFiltered;
-      },
-      error: err => {console.log(err)}
-    })
-  }
-
-  albumSelected() {
-    this.song!.album.id = this.selectedAlbum!.id;
-    this.song!.album.title = this.selectedAlbum!.title;
-  }
-
-  styleSelected() {
-    this.song!.style.id = this.selectedStyle!.id;
-    this.song!.style.name = this.selectedStyle!.name;
-  }
-
-  getAllStyles($event: any) {
-    let styleSearch: string | undefined;
-    if ($event?.query) {
-      styleSearch = $event.query;
-    }
-    this.styleService.getAllStyles(styleSearch).subscribe({
-      next: (stylesFiltered: any) => {
-        this.styles = stylesFiltered;
-      },
-      error: err => {console.log(err)}
-    })
-  }
-
   saveSong() {
     if (!this.songId) {
-      this.saveNewSong();
+      this.createSong();
     }
     if (this.songId) {
-      this.editCurrentSong();
+      this.editSong();
     }
-    console.log(this.song);
   }
 
-  private saveNewSong() {
+  selectImage($event: any): void {
+    this.imageConverter.includeImageInItem($event).then(
+      res => {
+        this.song.image = res![1];
+      });
+  }
+
+  getArtist(artist: IArtist) {
+    this.song.artist.id = artist.id;
+    console.log(artist);
+  }
+
+  getStyle(style: IStyle) {
+    this.song.style.id = style.id
+  }
+
+  getAlbum(album: IAlbum) {
+    this.song.album.id = album.id
+  }
+
+  private createSong() {
     const newSong: ISong = {
       name: this.song.name,
       duration: this.song.duration,
+      image: this.song.image,
       album: {
-        id: this.song.album.id
+        id: this.album!.id
       },
       style: {
-        id: this.song.style.id
+        id: this.style!.id
       },
       artist: {
         id: this.song.artist.id
@@ -148,7 +86,7 @@ export class FormComponent implements OnInit {
     this.modalRef.close()
   }
 
-  private editCurrentSong() {
+  private editSong() {
     this.songService.updateSong(this.song).subscribe({
       next: (updatedSong => {}),
       error: (err => {console.log(err)})
@@ -159,13 +97,14 @@ export class FormComponent implements OnInit {
 
   private loadSongById() {
     this.songService.getSongById(this.songId).subscribe({
-      next: (singleSong: any) => {this.song = singleSong;
-        console.log(singleSong);
-        this.selectedAlbum = this.song.album;
-        this.selectedStyle = this.song.style;
-        this.selectedArtist = this.song.artist},
+      next: (singleSong: any) => {
+        this.song = singleSong;
+        this.album = this.song.album;
+        this.style = this.song.style;
+        this.artist = this.song.artist},
       error: err => {console.log(err)}
     })
-
   }
+
+
 }

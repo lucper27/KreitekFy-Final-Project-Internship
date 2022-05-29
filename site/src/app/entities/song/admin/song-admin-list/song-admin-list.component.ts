@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ISong} from "../../model/song.interface";
+import {Component, Input, OnInit} from '@angular/core';
+import {IAlbum, IArtist, ISong, IStyle} from "../../model/song.interface";
 import {SongService} from "../../service/song.service";
 import {MatDialog} from "@angular/material/dialog";
 import {FormComponent} from "../../../../layout/form/form.component";
+import {FilterService} from "../../../../layout/filters/service/filter.service";
 
 @Component({
   selector: 'app-song-admin-list',
@@ -13,7 +14,7 @@ export class SongAdminListComponent implements OnInit {
   songList: ISong[] = [];
 
   page: number = 0;
-  size: number = 1;
+  size: number = 5;
   sort: string = "name,asc";
 
   first: boolean = false;
@@ -21,21 +22,24 @@ export class SongAdminListComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-  albumFilter?: string;
-  artistFilter?: string;
-  styleFilter?: string;
+  album?: string;
+  style?: string;
+  artist?: string;
 
   constructor(
     private songService: SongService,
-    private modal: MatDialog
-    ) { }
+    private modal: MatDialog,
+    private filterService: FilterService
+
+  ) { }
 
   ngOnInit(): void {
     this.getSongs();
   }
 
   private getSongs() {
-    const filters:string | undefined = this.buildFilters();
+    const filters = this.filterService.buildFilters(this.album, this.style, this.artist);
+    console.log(filters);
 
     this.songService.getAllSongs(this.page, this.size, this.sort, filters).subscribe({
       next: ((allSongs: any) => {
@@ -48,6 +52,7 @@ export class SongAdminListComponent implements OnInit {
       error:(err => {console.log(err)})
     })
   }
+
   public nextPage():void {
     this.page = this.page + 1;
     this.getSongs();
@@ -56,39 +61,6 @@ export class SongAdminListComponent implements OnInit {
   public previousPage():void {
     this.page = this.page - 1;
     this.getSongs();
-  }
-
-  public searchByFilters():void {
-    this.getSongs();
-  }
-
-  private buildFilters():string|undefined {
-    const filters: string[] = [];
-
-    if (this.albumFilter) {
-      filters.push("album.title:MATCH:" + this.albumFilter);
-    }
-
-    if(this.artistFilter) {
-      filters.push("artist.name:MATCH:" + this.artistFilter);
-    }
-
-    if (this.styleFilter) {
-      filters.push("style.name:MATCH:" + this.styleFilter);
-    }
-
-    if (filters.length >0) {
-
-      let globalFilters: string = "";
-      for (let filter of filters) {
-        globalFilters = globalFilters + filter + ",";
-      }
-      globalFilters = globalFilters.substring(0, globalFilters.length-1);
-      return globalFilters;
-
-    } else {
-      return undefined;
-    }
   }
 
   public createSongModal() {
@@ -113,6 +85,23 @@ export class SongAdminListComponent implements OnInit {
     this.songService.deleteSong(songId).subscribe(res => {
       this.getSongs();
     });
+  }
 
+
+  getAlbum(album: IAlbum) {
+    this.album = album.title
+  }
+
+  getStyle(style: IStyle) {
+    this.style = style.name
+  }
+
+  getArtist(artist: IArtist) {
+    this.artist = artist.name
+  }
+
+
+  searchByFilters() {
+    this.getSongs();
   }
 }
