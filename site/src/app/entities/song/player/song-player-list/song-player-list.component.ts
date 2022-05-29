@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ISong} from "../../model/song.interface";
-import {SongPlayerService} from "../../service/song-player.service";
+import {SongPlayerService} from '../../service/song-player.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -31,7 +31,7 @@ export class SongPlayerListComponent implements OnInit {
       next: ((allNewSongs: any) => {this.songList = allNewSongs
         console.log(allNewSongs)
       }),
-      error:(err => {console.log(err)})
+      error:((err: any) => {console.log()})
     })
   }
 

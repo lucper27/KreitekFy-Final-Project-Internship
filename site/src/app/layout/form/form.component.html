@@ -4,41 +4,38 @@
     <h1>Editar/Crear</h1>
 
     <div class="row">
-      <div class="col-md-6">
-        <label for="name" class="form-label">Nombre</label>
-        <input id="name" class="form-control" type="text" name="songName" [(ngModel)]="song.name" >
-      </div>
 
-      <div class="col-md-6">
-        <label for="song-duration" class="form-label">Duración en minutos</label>
-        <input id="song-duration" class="form-control" type="text" name="duration" [(ngModel)]="song.duration">
-      </div>
+      <label for="artist" class="labels">Artista</label>
+      <p-autoComplete id="artist"  name="selectedArtist" [(ngModel)]="selectedArtist" [suggestions]="artists"
+                      (completeMethod)="getAllArtist($event)" field="name" (onSelect)="artistSelected();"
+                      [required]="true"></p-autoComplete>
+
+      <label for="album" class="labels">Album</label>
+      <p-autoComplete id="album" name="selectedAlbum" [(ngModel)]="selectedAlbum" [suggestions]="albums"
+                      (completeMethod)="getAllAlbums($event)" field="title" (onSelect)="albumSelected()"
+                      [required]="true"></p-autoComplete>
+
+
+      <label for="style" class="labels">Estilo</label>
+      <p-autoComplete id="style" name="selectedStyle" [(ngModel)]="selectedStyle" [suggestions]="styles"
+                      (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
+                      [required]="true"></p-autoComplete>
+
+
+      <span class="p-float-label">
+             <input id="name" type="text" pInputText [(ngModel)]="song.name" name="songName">
+              <label for="name">Nombre</label>
+            </span>
+
+      <span class="p-float-label">
+            <input id="song-duration" type="text" name="duration" pInputText [(ngModel)]="song.duration">
+            <label for="song-duration">duración en minutos</label>
+          </span>
+
+
     </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <label for="artist" class="form-label">Artista</label>
-        <p-autoComplete styleClass="inputClass" id="artist"  name="selectedArtist" [(ngModel)]="selectedArtist" [suggestions]="artists"
-                        (completeMethod)="getAllArtist($event)" field="name" (onSelect)="artistSelected();"
-                        [required]="true"></p-autoComplete>
-      </div>
-
-      <div class="col-md-4">
-        <label for="album" class="form-label">Album</label>
-        <p-autoComplete styleClass="inputClass" id="album" name="selectedAlbum" [(ngModel)]="selectedAlbum" [suggestions]="albums"
-                        (completeMethod)="getAllAlbums($event)" field="title" (onSelect)="albumSelected()"
-                        [required]="true"></p-autoComplete>
-      </div>
-
-
-      <div class="col-md-4">
-        <label for="style" class="form-label">Estilo</label>
-        <p-autoComplete styleClass="inputClass" id="style" name="selectedStyle" [(ngModel)]="selectedStyle" [suggestions]="styles"
-                        (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
-                        [required]="true"></p-autoComplete>
-      </div>
-    </div>
-    <button type="button" class="btn btn-primary" (click)="saveSong()" [disabled]="songForm.invalid">Guardar</button>
+    <input type="file" id="imagen" (change)="selectImage($event);">
+    <button type="button" class="btn btn-primary" (click)="saveSong()" [disabled]="songForm.invalid">Save changes</button>
 
   </form>
 
