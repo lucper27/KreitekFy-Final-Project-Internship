@@ -274,3 +274,11 @@ INSERT INTO ALBUM (title) VALUES ('Thriller') [42102-200]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ID[*]"; se esperaba "INSERT"
 Syntax error in SQL statement "ID[*]"; expected "INSERT"; SQL statement:
 ID [42001-200]
+2022-05-29 13:17:31 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (SONGS: ""ID"" BIGINT NOT NULL)"
+Data conversion error converting "'' (SONGS: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."SONGS"("ID","DURATION","IMAGE","INCLUSION_DATE","NAME","ALBUM_ID","ARTIST_ID","STYLE_ID")VALUES(?,?,?,?,?,?,?,?) [22018-200]
+2022-05-29 13:17:31 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (SONGS: ""ID"" BIGINT NOT NULL)"
+Data conversion error converting "'' (SONGS: ""ID"" BIGINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."SONGS"("ID","DURATION","IMAGE","INCLUSION_DATE","NAME","ALBUM_ID","ARTIST_ID","STYLE_ID")VALUES(?,?,?,?,?,?,?,?) [22018-200]
