@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -78,5 +79,12 @@ public class SongRestController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/songs/novedades", produces = "application/json")
+    ResponseEntity<List<SongSimpleDTO>> getAllSongs() {
+        List<SongSimpleDTO> songs = this.songService.getAllByDateSorted();
+        return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
 }

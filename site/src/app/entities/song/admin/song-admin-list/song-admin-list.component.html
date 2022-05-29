@@ -11,7 +11,13 @@
                      (editSongModal)="editSongModal($event)"
       ></app-song-card>
     </div>
+  </div>
 
-
+  <div class="paginationButtons">
+    <button [disabled]="first" class="btn btn-secondary btnPrevious" (click)="previousPage()">Anterior</button>
+    <span>Pagina {{(page+1)}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
+    <button [disabled]="last" class="btn btn-secondary btnNext" (click)="nextPage()">Siguiente</button>
   </div>
 </div>
+
+

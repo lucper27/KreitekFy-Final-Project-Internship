@@ -1,10 +1,12 @@
 package com.kreitek.kreitekfy.application.mapper;
 
+import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
+
 import java.util.List;
 
 public interface EntityMapper <D, E>{
     E toEntity(D dto);
     D toDto(E entity);
     List<E> toEntity(List<D> dtoList);
-    List<D> toDto(List<E> entityList);
+    List<D> toDto(List<E> entity);
 }
