@@ -45,13 +45,14 @@ export class FormComponent implements OnInit {
 
   styles: IStyle[] = [];
 
-  constructor(private artistService: ArtistService,
-              private albumService: AlbumService,
-              private styleService: StyleService,
-              private songService: SongService,
-              public modalRef: MatDialogRef<FormComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: number,
-              ) { }
+  constructor(
+    private artistService: ArtistService,
+    private albumService: AlbumService,
+    private styleService: StyleService,
+    private songService: SongService,
+    public modalRef: MatDialogRef<FormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number
+  ) { }
 
   ngOnInit(): void {
     if(this.data) {
