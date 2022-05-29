@@ -8,23 +8,23 @@ export class ImageconverterService {
   convertedImage: string = '';
   constructor() { }
 
-  includeImageInItem($event: any): string {
+  includeImageInItem($event: any): Promise<string[] | void>{
     const inputFile = $event.target as HTMLInputElement;
     const file: File | null = inputFile.files?.item(0) ?? null;
 
-    this.readFileAsString(file!).then((result) => {
+    const res = this.readFileAsString(file!).then((result) => {
+        const response: string[] = [];
         const imageType: string = this.getImageType(result);
-        console.log(imageType);
         const imageBase64: string = this.getImageBase64(result);
-        console.log(imageBase64);
-
-        this.convertedImage = imageBase64;
+        response.push(imageType);
+        response.push(imageBase64);
+        return response;
       },
       (error) =>{
         console.log("No se pudo cargar la imagen");
-      })
+      });
 
-    return this.convertedImage;
+    return res;
   }
 
   private readFileAsString(file: File) {
