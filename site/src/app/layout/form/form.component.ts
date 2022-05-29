@@ -17,8 +17,6 @@ export class FormComponent implements OnInit {
   style?: IStyle;
   artist?: IArtist;
 
-
-
   constructor(
     private songService: SongService,
     public modalRef: MatDialogRef<FormComponent>,
@@ -30,6 +28,8 @@ export class FormComponent implements OnInit {
     if(this.data) {
       this.songId = this.data;
       this.loadSongById();
+    } else {
+      this.initializeSong();
     }
   }
 
@@ -68,17 +68,16 @@ export class FormComponent implements OnInit {
       duration: this.song.duration,
       image: this.song.image,
       album: {
-        id: this.album!.id
+        id: this.song.album.id
       },
       style: {
-        id: this.style!.id
+        id: this.song.style.id
       },
       artist: {
         id: this.song.artist.id
       },
       inclusionDate: new Date()
     }
-
     this.songService.insertSong(newSong).subscribe({
       next: (newSong => {}),
       error: (err => {console.log(err)})
@@ -107,4 +106,23 @@ export class FormComponent implements OnInit {
   }
 
 
+  private initializeSong() {
+    this.song = {
+      name: '',
+      image: '',
+      duration: 0,
+      artist: {
+        id: 0,
+        name: ''
+      },
+      album: {
+        id: 0,
+        title: ''
+      },
+      style: {
+        id: 0,
+        name: ''
+      }
+    };
+  }
 }

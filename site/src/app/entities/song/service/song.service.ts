@@ -13,7 +13,7 @@ export class SongService {
   public getAllSongs(page: number, size: number, sort: string, filters?: string ): Observable<ISong[]>{
     let urlEndpoint: string = "http://localhost:8080/stream/songs?page="+ page + "&size=" + size + "&sort=" + sort;
     if (filters) {
-      urlEndpoint = urlEndpoint + "&filter=" + filters;
+      urlEndpoint = urlEndpoint + "&filters=" + filters;
     }
     return this.http.get<ISong[]>(urlEndpoint);
   }

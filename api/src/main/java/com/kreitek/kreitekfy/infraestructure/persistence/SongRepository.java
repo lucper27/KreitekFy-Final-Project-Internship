@@ -14,6 +14,6 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
 //    Page<Song> findAllByAlbumId(Long albumId, Pageable pageable);
 //    Page<Song> findAllByArtistId(Long artistId, Pageable pageable);
 //    Page<Song> findAllByStyleId(Long styleId, Pageable pageable);
-    @Query(value = "SELECT * FROM SONGS WHERE INCLUSION_DATE < CURRENT_DATE ORDER BY INCLUSION_DATE DESC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT * FROM SONGS ORDER BY INCLUSION_DATE DESC LIMIT 5", nativeQuery = true)
     List<Song> findByDateSorted();
 }

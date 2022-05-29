@@ -38,11 +38,12 @@ export class SongAdminListComponent implements OnInit {
   }
 
   private getSongs() {
-    const filters = this.filterService.buildFilters(this.album, this.style, this.artist);
-    console.log(filters);
-
+    let filters: string | undefined = '';
+    filters = this.filterService.buildFilters(this.album, this.artist, this.style)
+    console.log('>>',filters)
     this.songService.getAllSongs(this.page, this.size, this.sort, filters).subscribe({
       next: ((allSongs: any) => {
+        console.log(allSongs);
         this.songList = allSongs.content;
         this.first = allSongs.first;
         this.last = allSongs.last;
@@ -90,14 +91,19 @@ export class SongAdminListComponent implements OnInit {
 
   getAlbum(album: IAlbum) {
     this.album = album.title
+    console.log(album.title)
   }
 
   getStyle(style: IStyle) {
     this.style = style.name
+    console.log(style.name)
+
   }
 
   getArtist(artist: IArtist) {
     this.artist = artist.name
+    console.log(artist.name)
+
   }
 
 

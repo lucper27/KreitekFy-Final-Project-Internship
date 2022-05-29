@@ -11,15 +11,15 @@ export class FilterService {
     const filters: string[] = [];
 
     if (albumFilter) {
-      filters.push("album.title:MATCH:" + albumFilter);
+      filters.push("album.title:EQUAL:" + albumFilter);
     }
 
     if(artistFilter) {
-      filters.push("artist.name:MATCH:" + artistFilter);
+      filters.push("artist.name:EQUAL:" + artistFilter);
     }
 
     if (styleFilter) {
-      filters.push("style.name:MATCH:" + styleFilter);
+      filters.push("style.name:EQUAL:" + styleFilter);
     }
 
     if (filters.length >0) {

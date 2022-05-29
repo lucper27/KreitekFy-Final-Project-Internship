@@ -25,7 +25,7 @@ public class SongRestController {
     @GetMapping(value = "/songs", produces = "application/json")
     ResponseEntity<Page<SongSimpleDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
         Page<SongSimpleDTO> songs = this.songService.getSongsByCriteriaStringPaged(pageable, filter);
-        return new ResponseEntity<Page<SongSimpleDTO>>(songs, HttpStatus.OK);
+        return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 //
 //    @CrossOrigin
