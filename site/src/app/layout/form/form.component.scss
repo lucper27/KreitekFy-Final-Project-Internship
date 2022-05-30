@@ -1,5 +1,11 @@
 form {
 
+  .form-image {
+    img {
+      width: 100%;
+    }
+  }
+
   .form-info {
     padding: 0 10px;
 
@@ -11,7 +17,6 @@ form {
       margin: 10px 0;
     }
 
-
     .dark-style {
       position: relative;
       padding-left: 20px;
@@ -19,10 +24,10 @@ form {
       font-size: 1rem;
       font-weight: 400;
       height: 45px;
-      border: 2px solid white;
-      box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
+      border: var(--border-dark-primary);
+      box-shadow: var(--box-shadow-dark-primary);
       background: transparent;
-      color: white;
+      color: var(--color-segundary);
       min-width: 200px;
       margin-top: 20px;
       margin-bottom: 2px;
@@ -33,6 +38,13 @@ form {
       left: 1px;
       box-shadow: none;
     }
+  }
+}
 
+@supports(object-fit: cover){
+  .form-image img{
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
 }

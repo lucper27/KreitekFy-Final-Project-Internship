@@ -4,12 +4,9 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   height: 100px;
-  color: white;
-  background-color: #333333;
+  color: var(--color-segundary);
+  background-color: var(--footer-bg-color);
   padding: 0 30px;
-
-  .leftFooter {
-  }
 
   ul {
     list-style: none;

@@ -11,7 +11,7 @@ export class SongPlayerService {
   constructor(private http: HttpClient) { }
 
   public getAllNewSongs(): Observable<ISong[]>{
-    let urlEndpoint: string = "http://localhost:8080/stream/songs/news";
+    let urlEndpoint: string = "http://localhost:8080/stream/songs/novedades";
     return this.http.get<ISong[]>(urlEndpoint);
   }
 }

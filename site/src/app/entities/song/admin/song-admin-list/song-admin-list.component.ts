@@ -81,7 +81,6 @@ export class SongAdminListComponent implements OnInit {
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })
-
   }
 
   public deleteSong(songId: number) {
