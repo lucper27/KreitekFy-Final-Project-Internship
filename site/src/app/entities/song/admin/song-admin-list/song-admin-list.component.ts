@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IAlbum, IArtist, ISong, IStyle} from "../../model/song.interface";
 import {SongService} from "../../service/song.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -14,7 +14,7 @@ export class SongAdminListComponent implements OnInit {
   songList: ISong[] = [];
 
   page: number = 0;
-  size: number = 5;
+  size: number = 25;
   sort: string = "name,asc";
 
   first: boolean = false;
@@ -22,9 +22,10 @@ export class SongAdminListComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-  album?: string;
-  style?: string;
-  artist?: string;
+  albumFilter?: string;
+  styleFilter?: string;
+  artistFilter?: string;
+  songFilter?: string;
 
   constructor(
     private songService: SongService,
@@ -39,8 +40,9 @@ export class SongAdminListComponent implements OnInit {
 
   private getSongs() {
     let filters: string | undefined = '';
-    filters = this.filterService.buildFilters(this.album, this.artist, this.style)
+    filters = this.filterService.buildFilters(this.albumFilter, this.artistFilter, this.styleFilter, this.songFilter)
     console.log('>>',filters)
+
     this.songService.getAllSongs(this.page, this.size, this.sort, filters).subscribe({
       next: ((allSongs: any) => {
         console.log(allSongs);
@@ -87,25 +89,6 @@ export class SongAdminListComponent implements OnInit {
       this.getSongs();
     });
   }
-
-
-  getAlbum(album: IAlbum) {
-    this.album = album.title
-    console.log(album.title)
-  }
-
-  getStyle(style: IStyle) {
-    this.style = style.name
-    console.log(style.name)
-
-  }
-
-  getArtist(artist: IArtist) {
-    this.artist = artist.name
-    console.log(artist.name)
-
-  }
-
 
   searchByFilters() {
     this.getSongs();

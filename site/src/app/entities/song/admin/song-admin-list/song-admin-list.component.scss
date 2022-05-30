@@ -1,51 +1,63 @@
-.row {
+.container-fluid {
+  letter-spacing: 1px;
+  .filters {
+    padding: 10px 0;
 
-  .titleRow {
-    color: white;
-    margin: 0;
-    padding: 0;
-    hr {
-      margin: 5px 0;
-      border: 1px white solid;
-      opacity: 1;
-    }
-  }
-
-  .titleRow:before {
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 100px;
-    background-color: white;
-    margin-top: -2px;
-  }
-  .songCard {
-    display: flex;
-    justify-content: center;
-  }
-
-}
-
-.row {
-  .list-header {
-    display: flex;
-    justify-content: space-between;
-
-    h1 {
+    label {
+      display: block;
       color: white;
+      margin-left: 10px;
+    }
+
+    .dark-style {
+      position: relative;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 1rem;
       font-weight: 400;
+      height: 45px;
+      border: 2px solid white;
+      box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
+      background: transparent;
+      color: white;
+      width: 100%;
+      min-width: 200px;
     }
 
-    button {
+    .dark-style:focus, .dark-style:hover, .dark-style:focus, .dark-style:hover {
+      top: 2px;
+      left: 1px;
+      box-shadow: none;
     }
+
   }
 
-  .list-header:before {
-    content: "";
-    position: absolute;
+  hr {
     height: 2px;
-    width: 100px;
-    background-color: white;
-    margin-top: -2px;
+    opacity: 1;
+    color: white;
   }
+
+  .row {
+    .songCard {
+      display: flex;
+      justify-content: center;
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        color: white;
+        font-weight: 400;
+      }
+
+      button {
+      }
+    }
+
+
+  }
+
 }

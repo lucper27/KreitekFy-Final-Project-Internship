@@ -1,13 +1,36 @@
 
-<app-filters
-  (artist)="getArtist($event)"
-  (style)="getStyle($event)"
-  (album)="getAlbum($event)">
-</app-filters>
-
-<button (click)="searchByFilters()">BOTON</button>
 
 <div class="container-fluid">
+  <div class="row justify-content-evenly filters">
+    <div class="col">
+      <label for="artist">Artista</label>
+      <input class="form-control dark-style" id="artist" [(ngModel)]="artistFilter" name="artistFilter">
+    </div>
+
+    <div class="col">
+      <label for="album">Album</label>
+      <input class="form-control dark-style" id="album" [(ngModel)]="albumFilter" name="albumFilter">
+    </div>
+
+    <div class="col">
+      <label for="style">Estilo</label>
+      <input class="form-control dark-style" id="style" [(ngModel)]="styleFilter" name="styleFilter">
+    </div>
+
+    <div class="col">
+      <label for="song">Canción</label>
+      <input class="form-control dark-style" id="song" [(ngModel)]="songFilter" name="songFilter">
+    </div>
+
+    <div class="col align-self-end">
+      <button class="btn btn-primary dark-style" (click)="searchByFilters()">FILTRAR</button>
+    </div>
+
+  </div>
+
+  <hr>
+
+
   <div class="row justify-content-evenly">
 
     <div class="list-header">
@@ -15,21 +38,21 @@
       <button (click)="createSongModal()">Crear canción</button>
     </div>
 
-
-
     <div class="col" *ngFor="let song of songList">
       <app-song-card class="songCard" [admin]="true" [song]="song"
                      (delete)="deleteSong($event)"
                      (editSongModal)="editSongModal($event)"
       ></app-song-card>
     </div>
+
+    <div class="paginationButtons">
+      <button [disabled]="first" class="btn btn-secondary btnPrevious" (click)="previousPage()">Anterior</button>
+      <span>Pagina {{(page+1)}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
+      <button [disabled]="last" class="btn btn-secondary btnNext" (click)="nextPage()">Siguiente</button>
+    </div>
+
   </div>
 
-  <div class="paginationButtons">
-    <button [disabled]="first" class="btn btn-secondary btnPrevious" (click)="previousPage()">Anterior</button>
-    <span>Pagina {{(page+1)}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
-    <button [disabled]="last" class="btn btn-secondary btnNext" (click)="nextPage()">Siguiente</button>
-  </div>
 </div>
 
 
