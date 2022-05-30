@@ -7,19 +7,23 @@ export class FilterService {
 
   constructor() {  }
 
-  public buildFilters(albumFilter?: string, artistFilter?: string, styleFilter?: string,):string|undefined {
+  public buildFilters(albumFilter?: string, artistFilter?: string, styleFilter?: string, nameFilter?: string):string|undefined {
     const filters: string[] = [];
 
     if (albumFilter) {
-      filters.push("album.title:EQUAL:" + albumFilter);
+      filters.push("album.title:MATCH:" + albumFilter);
     }
 
     if(artistFilter) {
-      filters.push("artist.name:EQUAL:" + artistFilter);
+      filters.push("artist.name:MATCH:" + artistFilter);
     }
 
     if (styleFilter) {
-      filters.push("style.name:EQUAL:" + styleFilter);
+      filters.push("style.name:MATCH:" + styleFilter);
+    }
+
+    if (nameFilter) {
+      filters.push("name:MATCH:" + nameFilter);
     }
 
     if (filters.length >0) {
