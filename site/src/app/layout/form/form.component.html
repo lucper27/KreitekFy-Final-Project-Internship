@@ -6,13 +6,32 @@
     <div class="row">
       <div class="col-md-6">
         <label for="name" class="form-label">Nombre</label>
-        <input id="name" class="form-control" type="text" name="songName" [(ngModel)]="song.name" >
+        <input id="name" class="form-control" type="text" name="songName" [(ngModel)]="song.name" #name="ngModel" required minlength="1" maxlength="100" >
+        <div *ngIf="(name.dirty && name.errors)">
+          <small class="form-text text-danger"
+                 *ngIf="name.errors['required']">
+            Este campo es requerido
+          </small>
+        </div>
       </div>
 
       <div class="col-md-6">
         <label for="song-duration" class="form-label">Duración en minutos</label>
-        <input id="song-duration" class="form-control" type="text" name="duration" [(ngModel)]="song.duration">
+        <input id="song-duration" class="form-control" type="text" name="duration" [(ngModel)]="song.duration"
+               #duration="ngModel" required min="1">
+        <div *ngIf="(duration.dirty && duration.errors)">
+          <small class="form-text text-danger"
+                 *ngIf="duration.errors['required']">
+            Este campo es requerido
+          </small>
+
+          <small class="form-text text-danger"
+                 *ngIf="duration.errors['min']">
+            El valor debe ser positivo
+          </small>
+        </div>
       </div>
+
     </div>
 
     <app-filters
