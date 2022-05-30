@@ -2,10 +2,10 @@
 
 <div class="card" *ngIf="song">
   <div class="card-image" (click)="openMe()">
-    <img *ngIf="song.image" class="card-img" width="100px" height="100px" [src]="'data:image/png;base64,'+song.image" [alt]="song.name">
-   <!-- <div class="card-img-overlay">
-      <h4 class="card-title">{{song.artist!.artistName}}</h4>
-    </div>-->
+    <img *ngIf="song.image" class="card-img" [src]="'data:image/png;base64,'+song.image" [alt]="song.name">
+    <div class="card-img-overlay">
+      <h4 class="card-title">{{song.artist.name}}</h4>
+    </div>
   </div>
 
   <div *ngIf="admin" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" class="close">

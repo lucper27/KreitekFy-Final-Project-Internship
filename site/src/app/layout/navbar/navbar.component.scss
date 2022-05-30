@@ -1,53 +1,5 @@
 .navbar {
   padding: 30px;
-  .navbar-nav {
-    margin-left: auto;
-    padding: 20px;
 
-    .nav-item {
-      margin-left: 30px;
-      letter-spacing: 1px;
-
-      .button {
-        position: relative;
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 17px;
-        font-weight: 500;
-        border-radius: 8px;
-        height: 45px;
-        box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
-        border: 2px solid white;
-        background: transparent;
-        color: white;
-      }
-
-      .button:focus,.button:hover {
-        top: 2px;
-        left: 1px;
-        box-shadow: none;
-      }
-
-      .input-filter::placeholder {
-        color: white;
-        opacity: 0.5;
-      }
-
-
-
-      .dropdown-menu {
-        background: #fff;
-        box-shadow: 0 1px 8px rgba(255, 255, 255, 0.20);
-        padding: 5px;
-        margin-top: 6px;
-        i {
-          color: #333;
-        }
-      }
-    }
-  }
 }
 
-.navbar-dark {
-  background-color: #222222;
-}
