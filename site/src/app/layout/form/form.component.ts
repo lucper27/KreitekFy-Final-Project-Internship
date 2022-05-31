@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   album?: IAlbum;
   style?: IStyle;
   artist?: IArtist;
+  title?: string;
 
   constructor(
     private songService: SongService,
@@ -95,6 +96,7 @@ export class FormComponent implements OnInit {
   }
 
   private loadSongById() {
+    this.title = 'Editar canción';
     this.songService.getSongById(this.songId).subscribe({
       next: (singleSong: any) => {
         this.song = singleSong;
@@ -107,6 +109,7 @@ export class FormComponent implements OnInit {
 
 
   private initializeSong() {
+    this.title = 'Crear canción';
     this.song = {
       name: '',
       image: '',

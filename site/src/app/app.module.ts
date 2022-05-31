@@ -17,6 +17,7 @@ import {SongPlayerListComponent} from "./entities/song/player/song-player-list/s
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDialogModule} from "@angular/material/dialog";
 import { FiltersComponent } from './layout/filters/filters/filters.component';
+import { SongPlayerComponent } from './entities/song/player/song-player/song-player.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FiltersComponent } from './layout/filters/filters/filters.component';
     FormComponent,
     SongCardComponent,
     SongPlayerListComponent,
-    FiltersComponent
+    FiltersComponent,
+    SongPlayerComponent
   ],
   imports: [
     BrowserModule,

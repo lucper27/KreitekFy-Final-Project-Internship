@@ -1,9 +1,50 @@
-.form-container {
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
-  border: 2px solid white;
-  background: transparent;
-  color: black;
+form {
 
+  .form-image {
+    img {
+      width: 100%;
+    }
+  }
+
+  .form-info {
+    padding: 0 10px;
+
+    h1 {
+      display: inline;
+    }
+
+    .col-md-6 {
+      margin: 10px 0;
+    }
+
+    .dark-style {
+      position: relative;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 1rem;
+      font-weight: 400;
+      height: 45px;
+      border: var(--border-dark-primary);
+      box-shadow: var(--box-shadow-dark-primary);
+      background: transparent;
+      color: var(--color-segundary);
+      min-width: 200px;
+      margin-top: 20px;
+      margin-bottom: 2px;
+    }
+
+    .dark-style:focus, .dark-style:hover, .dark-style:focus, .dark-style:hover {
+      top: 2px;
+      left: 1px;
+      box-shadow: none;
+    }
+  }
+}
+
+@supports(object-fit: cover){
+  .form-image img{
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }

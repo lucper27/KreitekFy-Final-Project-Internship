@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IAlbum, IArtist, ISong, IStyle} from "../../model/song.interface";
+import {ISong} from "../../model/song.interface";
 import {SongService} from "../../service/song.service";
 import {MatDialog} from "@angular/material/dialog";
 import {FormComponent} from "../../../../layout/form/form.component";
@@ -76,12 +76,11 @@ export class SongAdminListComponent implements OnInit {
 
   public editSongModal(songId: number) {
     const modalRef = this.modal.open(FormComponent, {
-      data: songId,
+      data: songId
     });
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })
-
   }
 
   public deleteSong(songId: number) {

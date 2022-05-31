@@ -1,36 +1,15 @@
-
-
-label {
-  display: block;
-  color: white;
-  letter-spacing: 2px;
+.col-md-4 {
+  margin: 10px 0;
 }
 
 :host ::ng-deep {
   .inputClass.p-autocomplete {
     width: 100%;
     .p-inputtext {
-      position: relative;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-size: 17px;
-      font-weight: 500;
-      border-radius: 8px;
-      height: 45px;
-      box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
-      border: 2px solid white;
-      background: transparent;
-      color: white;
+      width: 100%;
     }
-
-    .p-inputtext:valid {
-      box-shadow: 2px 3px 0 #24cf5f;
-    }
-
-    .p-inputtext:focus,.p-inputtext:hover {
-      top: 2px;
-      left: 1px;
-      box-shadow: none;
+    .p-autocomplete-panel {
+      height: 140px;
     }
   }
 }

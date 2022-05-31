@@ -4,26 +4,8 @@
       <h1 class="titleRow">Novedades<hr></h1>
 
       <div class="col" *ngFor="let song of songList">
-        <app-song-card class="songCard" [song]="song" (openSongDetail)="openSongDetail($event)"
-        ></app-song-card>
+        <app-song-card class="songCard" [song]="song" [routerLink]="['songs',song.id]"></app-song-card>
       </div>
-
-<!--      <div class="col">-->
-<!--        <app-song-card class="songCard" [song]="song"></app-song-card>-->
-
-<!--      </div>-->
-
-<!--      <div class="col">-->
-<!--        <app-song-card class="songCard" [song]="song"></app-song-card>-->
-<!--      </div>-->
-
-<!--      <div class="col">-->
-<!--        <app-song-card class="songCard" [song]="song"></app-song-card>-->
-<!--      </div>-->
-
-<!--      <div class="col">-->
-<!--        <app-song-card class="songCard" [song]="song"></app-song-card>-->
-<!--      </div>-->
 
 
   </div>

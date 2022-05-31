@@ -1,0 +1,33 @@
+<div class="song">
+  <div class="row" *ngIf="song">
+
+    <div class="col-md-4 song-image">
+      <img *ngIf="song.image" height="auto" [src]="'data:image/png;base64,'+ song.image" [alt]="song.name">
+    </div>
+
+    <div class="col-md-8 info">
+
+      <div class="row">
+        <div class="col">
+          <h1>{{song.name}}</h1>
+        </div>
+
+        <div class="col d-flex justify-content-end">
+          <button type="button" class="btn btn-primary light-style"  [routerLink]="['/profile', profileName]">Cerrar</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Duración en minutos:</strong> {{song.duration}}</p>
+          <p><strong>Artista:</strong> {{song.artist.name}}</p>
+          <p><strong>Album:</strong> {{song.album.title}}</p>
+          <p><strong>Estilo:</strong> {{song.style.name}}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

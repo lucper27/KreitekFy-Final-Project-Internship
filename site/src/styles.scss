@@ -1,7 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%; //Todo
+  background: var(--color-primary)!important; //Todo
+}
 body {
-  font-family: Metropolis, sans-serif;
+  margin: 0;
+  font-family: var(--family-font);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --color-primary: #222;
+  --color-segundary: #fff;
+  --color-tertiary: #222;
+
+  --single-song-bg-color: #f9f9f9cc;
+  --single-song-box-shadow: 0 0 0 10px #444,0 0 0 20px #333 ;
+
+  --footer-bg-color: #333333;
+
+  --box-shadow-dark-primary: 2px 3px 0 #fff;
+  --box-shadow-light-primary: 2px 3px 0 #222;
+
+  --border-dark-primary: 2px solid #fff;
+  --border-light-primary: 2px solid #222;
+
+  --text-shadow: 1px 2px 10px #222;
+
+  --family-font: Metropolis, Roboto, "Helvetica Neue", sans-serif;
+
+}

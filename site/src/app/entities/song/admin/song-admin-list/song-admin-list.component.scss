@@ -1,63 +1,73 @@
 .container-fluid {
-  letter-spacing: 1px;
+  .dark-style {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 45px;
+    border: var(--border-dark-primary);
+    box-shadow: var(--box-shadow-dark-primary);
+    background: transparent;
+    color: var(--color-segundary);
+    width: 100%;
+    min-width: 200px;
+  }
+
+  .dark-style:focus, .dark-style:hover, .dark-style:focus, .dark-style:hover {
+    top: 2px;
+    left: 1px;
+    box-shadow: none;
+  }
+
   .filters {
-    padding: 10px 0;
 
     label {
+      letter-spacing: 1px;
       display: block;
-      color: white;
+      color: var(--color-segundary);
       margin-left: 10px;
     }
 
-    .dark-style {
-      position: relative;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-size: 1rem;
-      font-weight: 400;
-      height: 45px;
-      border: 2px solid white;
-      box-shadow: 2px 3px 0 rgba(255, 255, 255, 1);
-      background: transparent;
-      color: white;
+  }
+
+  .songsHeader {
+    h1 {
+      color: var(--color-segundary);
+      margin: 0;
       width: 100%;
-      min-width: 200px;
+    }
+    button {
+      max-width: 400px;
+    }
+  }
+
+  .col {
+    margin: 10px 0;
+  }
+
+  .cards {
+    .songCard {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .paginationButtons {
+    button {
+      width: auto;
     }
 
-    .dark-style:focus, .dark-style:hover, .dark-style:focus, .dark-style:hover {
-      top: 2px;
-      left: 1px;
-      box-shadow: none;
+    span {
+      color: var(--color-segundary);
+      margin: auto 10px;
+      text-align: center;
     }
-
   }
 
   hr {
     height: 2px;
     opacity: 1;
-    color: white;
+    color: var(--color-segundary);
   }
-
-  .row {
-    .songCard {
-      display: flex;
-      justify-content: center;
-    }
-
-    .list-header {
-      display: flex;
-      justify-content: space-between;
-
-      h1 {
-        color: white;
-        font-weight: 400;
-      }
-
-      button {
-      }
-    }
-
-
-  }
-
 }

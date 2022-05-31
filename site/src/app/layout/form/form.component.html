@@ -1,52 +1,52 @@
-<div class="form-container">
+<mat-dialog-content>
   <form #songForm="ngForm" *ngIf="song" name="songForm" role="form" novalidate autocomplete="off">
 
-    <h1>Editar/Crear</h1>
-    <div *ngIf="song.image"><img width="100px" [src]="'data:image/png;base64,'+ song.image"></div>
     <div class="row">
-      <div class="col-md-6">
-        <label for="name" class="form-label">Nombre</label>
-        <input id="name" class="form-control" type="text" name="songName" [(ngModel)]="song.name" #name="ngModel" required minlength="1" maxlength="100" >
-        <div *ngIf="(name.dirty && name.errors)">
-          <small class="form-text text-danger"
-                 *ngIf="name.errors['required']">
-            Este campo es requerido
-          </small>
-        </div>
+
+      <div class="col-md-4 form-image">
+        <img *ngIf="song.image" [src]="'data:image/png;base64,'+ song.image" [alt]="song.name">
       </div>
 
-      <div class="col-md-6">
-        <label for="song-duration" class="form-label">Duración en minutos</label>
-        <input id="song-duration" class="form-control" type="text" name="duration" [(ngModel)]="song.duration"
-               #duration="ngModel" required min="1">
-        <div *ngIf="(duration.dirty && duration.errors)">
-          <small class="form-text text-danger"
-                 *ngIf="duration.errors['required']">
-            Este campo es requerido
-          </small>
+      <div class="col-md-8 form-info">
 
-          <small class="form-text text-danger"
-                 *ngIf="duration.errors['min']">
-            El valor debe ser positivo
-          </small>
+        <h1>{{title}}</h1>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Nombre</label>
+            <input id="name" class="form-control" type="text" name="songName" [(ngModel)]="song.name" >
+          </div>
+
+          <div class="col-md-6">
+            <label for="song-duration" class="form-label">Duración en minutos</label>
+            <input id="song-duration" class="form-control" type="text" name="duration" [(ngModel)]="song.duration">
+          </div>
+        </div>
+
+        <app-filters
+            (artist)="getArtist($event)"
+            (style)="getStyle($event)"
+            (album)="getAlbum($event)"
+            [song]="song">
+        </app-filters>
+
+        <div class="row">
+          <div class="col-md-12">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input class="form-control" type="file" id="imagen" (change)="selectImage($event);">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col d-flex justify-content-end">
+            <button type="button" class="btn btn-primary dark-style" (click)="saveSong()" [disabled]="songForm.invalid">Guardar</button>
+          </div>
         </div>
       </div>
 
     </div>
 
-    <app-filters
-      (artist)="getArtist($event)"
-      (style)="getStyle($event)"
-      (album)="getAlbum($event)"
-      [song]="song"></app-filters>
-
-    <input type="file" id="imagen" (change)="selectImage($event);">
-
-    <button type="button" class="btn btn-primary" (click)="saveSong()" [disabled]="songForm.invalid">Guardar</button>
-
   </form>
 
-
-</div>
-
+</mat-dialog-content>
 
