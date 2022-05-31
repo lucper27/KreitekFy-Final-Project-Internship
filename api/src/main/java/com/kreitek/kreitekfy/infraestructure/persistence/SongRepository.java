@@ -23,6 +23,8 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
 
     Song findSongById(Long id);
 
+    List<Song> findAllWMoreReproductionsById(Long styleId);
+
     List<Song> findAllSongsByRating();
 
 

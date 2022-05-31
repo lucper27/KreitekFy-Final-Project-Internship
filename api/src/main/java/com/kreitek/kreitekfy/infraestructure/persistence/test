@@ -1,0 +1,28 @@
+@Override
+    public List<Song> findAllSongsByRating() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Song> query = cb.createQuery(Song.class);
+
+        Root<SongProfile> songProfile = query.from(SongProfile.class);
+        Path<Song> songPath = songProfile.get("song");
+        Order ratingOrder = cb.desc(cb.avg(songProfile.get("rating")));
+
+        query.select(songPath);
+        query.groupBy(songPath.get("id"));
+        query.orderBy(ratingOrder);
+
+        return entityManager.createQuery(query).setMaxResults(5).getResultList();
+    }
+
+      SELECT  SONG_ID
+            FROM REPRODUCTIONS
+            INNER JOIN SONGS ON SONG_ID = SONG_ID
+            WHERE SONGS.STYLE_ID = 601
+            GROUP BY SONG_ID
+            ORDER BY COUNT(*) DESC
+            LIMIT 5
+
+            SELECT SONG_ID, COUNT(*) FROM REPRODUCTIONS
+            GROUP BY SONG_ID
+            ORDER BY COUNT(*) DESC
+            LIMIT 5

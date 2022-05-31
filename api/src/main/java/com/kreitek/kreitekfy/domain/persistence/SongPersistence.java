@@ -20,6 +20,10 @@ public interface SongPersistence {
 
     List<Song> getAllSongsByStyleIdAndDateSorted(Long styleId);
 
+    List<Song> findMoreReproduced();
+
+    List<Song> findMoreReproducedByStyle(Long styleId);
+
     List<Song> getAllByRatingSorted();
 
     List<Song> getAllByRatingAndStyleSorted(Long styleId);

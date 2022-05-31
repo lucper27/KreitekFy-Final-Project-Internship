@@ -27,4 +27,8 @@ public interface SongService {
     List<SongSimpleDTO> getAllByRating();
 
     List<SongSimpleDTO> getAllByRatingAndStyle(Long styleId);
+
+    List<SongSimpleDTO> getMoreReproducedSongs();
+
+    List<SongSimpleDTO> getMoreReproducedByStyle(Long styleId);
 }
