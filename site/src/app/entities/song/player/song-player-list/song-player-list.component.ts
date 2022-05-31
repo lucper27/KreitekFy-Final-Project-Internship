@@ -12,6 +12,7 @@ import {StyleService} from "../../../../shared/services/style.service";
 export class SongPlayerListComponent implements OnInit {
   profileName?: string | null;
   songList: ISong[] = [];
+  mostReproducedSongs: ISong[] = [];
 
   selectedStyle?: IStyle;
   styles: IStyle[] = [];
@@ -25,6 +26,7 @@ export class SongPlayerListComponent implements OnInit {
   ngOnInit(): void {
     this.profileName = this.route.snapshot.paramMap.get('profileName');
     this.getAllNewSongs();
+    this.getMostReproducedSongs();
   }
 
   private getAllNewSongs(styleId?: number) {
@@ -54,9 +56,18 @@ export class SongPlayerListComponent implements OnInit {
 
   styleSelected() {
     this.getAllNewSongs(this.selectedStyle?.id);
+    this.getMostReproducedSongs(this.selectedStyle?.id);
   }
 
   onClear() {
     this.getAllNewSongs();
+    this.getMostReproducedSongs();
+  }
+
+  private getMostReproducedSongs(styleId?: number) {
+    this.songPlayerService.getMostReproducedSongs(styleId).subscribe({
+      next: ((mostReproducedSongs: any) => {this.mostReproducedSongs = mostReproducedSongs}),
+      error: ((err: any) => {console.log()})
+    })
   }
 }
