@@ -1,12 +1,27 @@
 <div class="container-fluid">
-    <div class="row justify-content-evenly">
 
-      <h1 class="titleRow">Novedades<hr></h1>
+  <hr>
 
-      <div class="col" *ngFor="let song of songList">
-        <app-song-card class="songCard" [song]="song" [routerLink]="['songs',song.id]"></app-song-card>
-      </div>
+  <div class="row songsHeader">
+    <div class="col">
+      <h1>Novedades</h1>
+    </div>
+    <div class="col d-flex justify-content-end">
+
+      <p-autoComplete styleClass="inputClass" type="search" [(ngModel)]="selectedStyle" name="selectedStyle"
+                      [suggestions]="styles" (completeMethod)="getAllStyles($event)" placeholder="Estilo..."
+                      field="name" (onSelect)="styleSelected();" (onClear)="onClear()"></p-autoComplete>
 
 
+    </div>
   </div>
+
+  <hr>
+
+  <div class="row justify-content-evenly">
+    <div class="col" *ngFor="let song of songList">
+      <app-song-card class="songCard" [song]="song" [routerLink]="['songs',song.id]"></app-song-card>
+    </div>
+  </div>
+
 </div>
