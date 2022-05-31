@@ -23,4 +23,18 @@ export class SongPlayerService {
 
     return this.http.get<ISong[]>(urlEndpoint, {'headers': header});
   }
+
+  public getAllRatedSongs(styleId?: number): Observable<ISong[]>{
+    let urlEndpoint: string;
+    let header = new HttpHeaders();
+
+    if (styleId) {
+      urlEndpoint = "http://localhost:8080/stream/songs/ratings?styleId=" + styleId
+      header = header.set('Accept', 'application/songStyleId+json');
+    }else {
+      urlEndpoint = "http://localhost:8080/stream/songs/ratings"
+    }
+
+    return this.http.get<ISong[]>(urlEndpoint, {'headers': header});
+  }
 }

@@ -24,4 +24,19 @@
     </div>
   </div>
 
+  <hr>
+
+  <div class="row songsHeader">
+    <div class="col">
+      <h1>Mejor valoradas</h1>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row justify-content-evenly">
+    <div class="col" *ngFor="let songRated of songListRated">
+      <app-song-card class="songCard" [song]="songRated" [routerLink]="['songs',songRated.id]"></app-song-card>
+    </div>
+  </div>
 </div>

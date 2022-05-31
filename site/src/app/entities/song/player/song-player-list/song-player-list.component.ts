@@ -12,6 +12,7 @@ import {StyleService} from "../../../../shared/services/style.service";
 export class SongPlayerListComponent implements OnInit {
   profileName?: string | null;
   songList: ISong[] = [];
+  songListRated: ISong[] = [];
 
   selectedStyle?: IStyle;
   styles: IStyle[] = [];
@@ -25,12 +26,22 @@ export class SongPlayerListComponent implements OnInit {
   ngOnInit(): void {
     this.profileName = this.route.snapshot.paramMap.get('profileName');
     this.getAllNewSongs();
+    this.getAllRatedSongs();
   }
 
   private getAllNewSongs(styleId?: number) {
     this.songPlayerService.getAllNewSongs(styleId).subscribe({
       next: ((allNewSongs: any) => {this.songList = allNewSongs
         console.log(allNewSongs)
+      }),
+      error:((err: any) => {console.log()})
+    })
+  }
+
+  private getAllRatedSongs(styleId?: number){
+    this.songPlayerService.getAllRatedSongs(styleId).subscribe({
+      next: ((allRatedSongs: any) => {this.songListRated = allRatedSongs
+        console.log(allRatedSongs)
       }),
       error:((err: any) => {console.log()})
     })
@@ -54,9 +65,11 @@ export class SongPlayerListComponent implements OnInit {
 
   styleSelected() {
     this.getAllNewSongs(this.selectedStyle?.id);
+    this.getAllRatedSongs(this.selectedStyle?.id)
   }
 
   onClear() {
     this.getAllNewSongs();
+    this.getAllRatedSongs();
   }
 }
