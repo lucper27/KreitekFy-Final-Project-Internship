@@ -19,6 +19,8 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
     @Query(value = "SELECT * FROM SONGS ORDER BY INCLUSION_DATE DESC LIMIT 5", nativeQuery = true)
     List<Song> findByDateSorted();
 
+    Song findSongById(Long id);
+
 
 
 }

@@ -79,7 +79,7 @@ public class SongServiceImpl implements SongService {
         return this.mapper.toSimpleDto(songsByDate);
     }
 
-    @Override
+  /*  @Override
     public void addReproductionToSong(Long songId, ReproductionDTO reproductionDTO) {
         Optional<Song> song = this.persistence.getSongById(songId);
         if (song.isPresent()) {
@@ -87,7 +87,7 @@ public class SongServiceImpl implements SongService {
             this.persistence.saveSong(song.get());
         }
 
-    }
+    }*/
 
 
 

@@ -10,7 +10,9 @@ public class ReproductionDTO implements Serializable {
 
     private Long profileId;
 
-//    private Integer reproduction;
+
+    public ReproductionDTO() {
+    }
 
     public Long getId() {
         return id;

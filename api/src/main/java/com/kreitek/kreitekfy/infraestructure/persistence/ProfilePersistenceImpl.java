@@ -31,9 +31,7 @@ public class ProfilePersistenceImpl implements ProfilePersistence {
 
     @Override
     public List<SongProfile> addSongInProfile(Long profileId, SongProfile songProfile) {
-        Profile profile = getProfileById(profileId)
-                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
-        songProfile.setProfile(profile);
+        Profile profile = this.profileRepository.getProfileById(profileId);
         profile.getRatings().add(songProfile);
         this.profileRepository.save(profile);
         return profile.getRatings();
@@ -41,13 +39,8 @@ public class ProfilePersistenceImpl implements ProfilePersistence {
 
     @Override
     public List<SongProfile> getSongsOfProfile(Long profileId) {
-
-        Profile profile = getProfileById(profileId)
-                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
+        Profile profile = this.profileRepository.getProfileById(profileId);
         return profile.getRatings();
     }
 
-    private Optional<Profile> getProfileById(Long id) {
-        return profileRepository.findById(id);
-    }
 }

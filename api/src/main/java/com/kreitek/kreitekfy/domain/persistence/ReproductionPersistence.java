@@ -8,7 +8,7 @@ import java.util.List;
 public interface ReproductionPersistence {
 
     // buscar todas las reproducciones por cancion ID, test
-    List<ReproductionDTO> findAllBySong_id(Long songId);
+    List<Reproduction> findAllBySong_id(Long songId);
 
-    List<ReproductionDTO> addReproductionToSong(Long songId, ReproductionDTO reproductionDTO);
+    List<Reproduction> addReproductionToSong(Long songId, Reproduction reproduction);
 }

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,9 @@ public class Song {
     @ManyToOne
     @JoinColumn(name = "style_id", nullable = false)
     private Style style;
+
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Reproduction> reproductions;
 
 
     public Song() {
@@ -109,5 +113,11 @@ public class Song {
         this.image = image;
     }
 
+    public List<Reproduction> getReproductions() {
+        return reproductions;
+    }
 
+    public void setReproductions(List<Reproduction> reproductions) {
+        this.reproductions = reproductions;
+    }
 }

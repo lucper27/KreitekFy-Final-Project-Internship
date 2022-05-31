@@ -9,5 +9,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
     List<Profile> findAll();
 
+    Profile getProfileById(Long id);
+
     Profile save(Profile profile);
 }
