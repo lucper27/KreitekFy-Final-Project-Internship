@@ -47,9 +47,6 @@ public abstract class EntitySpecification<T> {
                     predicates.add(builder.equal(
                             root.get(criteria.getKey()), criteria.getValue()));
                 }
-
-
-
             } else if (criteria.getOperation().equals(SearchOperation.MATCH)) {
 
                 if (criteria.getKey().contains(".")) {
@@ -63,14 +60,6 @@ public abstract class EntitySpecification<T> {
                             builder.lower(root.get(criteria.getKey())),
                             "%" + criteria.getValue().toString().toLowerCase() + "%"));
                 }
-
-
-
-
-
-
-
-
             } else if (criteria.getOperation().equals(SearchOperation.MATCH_END)) {
                 predicates.add(builder.like(
                         builder.lower(root.get(criteria.getKey())),

@@ -1,5 +1,7 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
+import com.kreitek.kreitekfy.application.dto.ReproductionDTO;
+import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,4 +18,7 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
 //    Page<Song> findAllByStyleId(Long styleId, Pageable pageable);
     @Query(value = "SELECT * FROM SONGS ORDER BY INCLUSION_DATE DESC LIMIT 5", nativeQuery = true)
     List<Song> findByDateSorted();
+
+
+
 }

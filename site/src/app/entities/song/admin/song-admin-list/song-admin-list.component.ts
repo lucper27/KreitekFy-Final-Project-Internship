@@ -39,6 +39,7 @@ export class SongAdminListComponent implements OnInit {
   }
 
   private getSongs() {
+
     let filters: string | undefined = '';
     filters = this.filterService.buildFilters(this.albumFilter, this.artistFilter, this.styleFilter, this.songFilter)
     console.log('>>',filters)

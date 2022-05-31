@@ -28,7 +28,8 @@ export class FiltersComponent implements OnInit {
     private artistService: ArtistService,
     private albumService: AlbumService,
     private styleService: StyleService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.selectedArtist = this.song?.artist
@@ -45,7 +46,9 @@ export class FiltersComponent implements OnInit {
       next: (artistsFiltered: any) => {
         this.artists = artistsFiltered;
       },
-      error: err => {console.log(err)}
+      error: err => {
+        console.log(err)
+      }
     })
   }
 
@@ -58,7 +61,9 @@ export class FiltersComponent implements OnInit {
       next: (albumFiltered: any) => {
         this.albums = albumFiltered;
       },
-      error: err => {console.log(err)}
+      error: err => {
+        console.log(err)
+      }
     })
   }
 
@@ -71,17 +76,22 @@ export class FiltersComponent implements OnInit {
       next: (stylesFiltered: any) => {
         this.styles = stylesFiltered;
       },
-      error: err => {console.log(err)}
+      error: err => {
+        console.log(err)
+      }
     })
   }
 
   artistSelected() {
-    this.artist.emit(this.selectedArtist);
+    if (this.selectedArtist) {
+      this.artist.emit(this.selectedArtist);
+    } else {
+      this.artist.emit(undefined);
+    }
   }
 
   albumSelected() {
     this.album.emit(this.selectedAlbum);
-
   }
 
   styleSelected() {

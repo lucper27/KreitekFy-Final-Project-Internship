@@ -1,8 +1,10 @@
 package com.kreitek.kreitekfy.application.service.impl;
 
+import com.kreitek.kreitekfy.application.dto.ReproductionDTO;
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
 import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
+import com.kreitek.kreitekfy.application.mapper.ReproductionMapper;
 import com.kreitek.kreitekfy.application.mapper.SongMapper;
 import com.kreitek.kreitekfy.application.service.SongService;
 import com.kreitek.kreitekfy.domain.entity.Song;
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -22,10 +23,14 @@ public class SongServiceImpl implements SongService {
     private final SongPersistence persistence;
     private final SongMapper mapper;
 
+    private final ReproductionMapper reproductionMapper;
+
+
     @Autowired
-    public SongServiceImpl(SongPersistence persistence, SongMapper mapper) {
+    public SongServiceImpl(SongPersistence persistence, SongMapper mapper, ReproductionMapper reproductionMapper) {
         this.persistence = persistence;
         this.mapper = mapper;
+        this.reproductionMapper = reproductionMapper;
     }
 
     @Override
@@ -72,6 +77,16 @@ public class SongServiceImpl implements SongService {
     public List<SongSimpleDTO> getAllByDateSorted() {
         List<Song> songsByDate = this.persistence.getAllByDateSorted();
         return this.mapper.toSimpleDto(songsByDate);
+    }
+
+    @Override
+    public void addReproductionToSong(Long songId, ReproductionDTO reproductionDTO) {
+        Optional<Song> song = this.persistence.getSongById(songId);
+        if (song.isPresent()) {
+            song.get().getReproductions().add(reproductionMapper.toEntity(reproductionDTO));
+            this.persistence.saveSong(song.get());
+        }
+
     }
 
 
