@@ -21,5 +21,6 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
 
     List<Song> findAllNewsById(Long id);
 
+    Song findSongById(Long id);
 
 }
