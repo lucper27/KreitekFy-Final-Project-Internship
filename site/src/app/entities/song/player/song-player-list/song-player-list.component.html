@@ -11,8 +11,6 @@
       <p-autoComplete styleClass="inputClass" type="search" [(ngModel)]="selectedStyle" name="selectedStyle"
                       [suggestions]="styles" (completeMethod)="getAllStyles($event)" placeholder="Estilo..."
                       field="name" (onSelect)="styleSelected();" (onClear)="onClear()"></p-autoComplete>
-
-
     </div>
   </div>
 
@@ -20,6 +18,22 @@
 
   <div class="row justify-content-evenly">
     <div class="col" *ngFor="let song of songList">
+      <app-song-card class="songCard" [song]="song" [routerLink]="['songs',song.id]"></app-song-card>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row songsHeader">
+    <div class="col">
+      <h1>Más Escuchadas</h1>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row justify-content-evenly">
+    <div class="col" *ngFor="let song of mostReproducedSongs">
       <app-song-card class="songCard" [song]="song" [routerLink]="['songs',song.id]"></app-song-card>
     </div>
   </div>
