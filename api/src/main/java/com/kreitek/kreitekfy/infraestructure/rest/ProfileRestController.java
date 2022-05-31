@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.infraestructure.rest;
 
 import com.kreitek.kreitekfy.application.dto.ProfileDTO;
+import com.kreitek.kreitekfy.application.dto.SongProfileDTO;
 import com.kreitek.kreitekfy.application.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,4 +35,21 @@ public class ProfileRestController {
         ProfileDTO savedProfile = this.profileService.save(profileDTO);
         return new ResponseEntity<>(savedProfile, HttpStatus.OK);
     }
+
+    @PutMapping(value = "/profiles/{profileId}/ratings", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<List<SongProfileDTO>> addSongInProfile(@PathVariable Long profileId,
+                                                                                     @RequestBody SongProfileDTO songProfileDTO) {
+        List<SongProfileDTO> songProfileDTOS = profileService
+                .addSongInProfile(profileId, songProfileDTO);
+        return new ResponseEntity<>(songProfileDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/profiles/{profileId}/ratings", produces = "application/json")
+    public ResponseEntity<List<SongProfileDTO>> getSongOfProfile(@PathVariable Long profileId) {
+
+        List<SongProfileDTO> songProfileDTOs = profileService
+                .getSongsOfProfile(profileId);
+        return new ResponseEntity<>(songProfileDTOs, HttpStatus.OK);
+    }
+
 }

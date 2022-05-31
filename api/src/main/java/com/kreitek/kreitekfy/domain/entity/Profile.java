@@ -2,6 +2,8 @@ package com.kreitek.kreitekfy.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "profiles")
@@ -14,6 +16,9 @@ public class Profile {
     @Column(nullable = false, length = 100)
     @Size(min = 3, max = 100)
     private String name;
+
+    @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL)
+    private List<SongProfile> ratings;
 
     public Profile() {
     }
@@ -32,5 +37,13 @@ public class Profile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<SongProfile> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<SongProfile> ratings) {
+        this.ratings = ratings;
     }
 }

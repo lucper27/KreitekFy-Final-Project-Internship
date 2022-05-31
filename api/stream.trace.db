@@ -282,3 +282,7 @@ INSERT INTO "PUBLIC"."SONGS"("ID","DURATION","IMAGE","INCLUSION_DATE","NAME","AL
 org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (SONGS: ""ID"" BIGINT NOT NULL)"
 Data conversion error converting "'' (SONGS: ""ID"" BIGINT NOT NULL)"; SQL statement:
 INSERT INTO "PUBLIC"."SONGS"("ID","DURATION","IMAGE","INCLUSION_DATE","NAME","ALBUM_ID","ARTIST_ID","STYLE_ID")VALUES(?,?,?,?,?,?,?,?) [22018-200]
+2022-05-30 18:08:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "SONGS_PROFILES" no encontrada
+Table "SONGS_PROFILES" not found; SQL statement:
+select song0_.id as id1_3_1_, song0_.album_id as album_id6_3_1_, song0_.artist_id as artist_i7_3_1_, song0_.duration as duration2_3_1_, song0_.image as image3_3_1_, song0_.inclusion_date as inclusio4_3_1_, song0_.name as name5_3_1_, song0_.style_id as style_id8_3_1_, ratings1_.song_id as song_id2_4_3_, ratings1_.profile_id as profile_1_4_3_, ratings1_.profile_id as profile_1_4_0_, ratings1_.song_id as song_id2_4_0_, ratings1_.rating as rating3_4_0_ from songs song0_ left outer join songs_profiles ratings1_ on song0_.id=ratings1_.song_id where song0_.id=? [42102-200]

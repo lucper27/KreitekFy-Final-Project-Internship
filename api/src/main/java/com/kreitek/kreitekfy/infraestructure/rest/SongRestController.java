@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.infraestructure.rest;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.application.service.SongService;
 import org.springframework.data.domain.Page;
@@ -84,9 +85,11 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs/novedades", produces = "application/json")
+    @GetMapping(value = "/songs/news", produces = "application/json")
     ResponseEntity<List<SongSimpleDTO>> getAllSongs() {
         List<SongSimpleDTO> songs = this.songService.getAllByDateSorted();
         return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
+
+
 }

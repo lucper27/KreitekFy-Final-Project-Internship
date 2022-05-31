@@ -1,6 +1,8 @@
 package com.kreitek.kreitekfy.application.service;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
+import com.kreitek.kreitekfy.application.dto.SongProfileDTO;
 import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +19,8 @@ public interface SongService {
     SongAdminDTO saveSong(SongAdminDTO songAdminDTO);
     void deleteSong(Long songId);
     Page<SongSimpleDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter);
-
     List<SongSimpleDTO> getAllByDateSorted();
+
+
 
 }

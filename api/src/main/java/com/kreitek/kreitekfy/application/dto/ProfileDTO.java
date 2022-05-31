@@ -1,10 +1,15 @@
 package com.kreitek.kreitekfy.application.dto;
 
-public class ProfileDTO {
+import java.io.Serializable;
+import java.util.List;
+
+public class ProfileDTO implements Serializable {
 
     private Long id;
 
     private String name;
+
+    private List<SongProfileDTO> ratings;
 
     public ProfileDTO() {
     }
@@ -23,5 +28,13 @@ public class ProfileDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<SongProfileDTO> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<SongProfileDTO> ratings) {
+        this.ratings = ratings;
     }
 }

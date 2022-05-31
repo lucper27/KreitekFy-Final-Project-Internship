@@ -1,10 +1,13 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
 import com.kreitek.kreitekfy.domain.entity.Profile;
+import com.kreitek.kreitekfy.domain.entity.SongProfile;
 import com.kreitek.kreitekfy.domain.persistence.ProfilePersistence;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class ProfilePersistenceImpl implements ProfilePersistence {
@@ -24,5 +27,27 @@ public class ProfilePersistenceImpl implements ProfilePersistence {
     @Override
     public Profile save(Profile profile) {
         return this.profileRepository.save(profile);
+    }
+
+    @Override
+    public List<SongProfile> addSongInProfile(Long profileId, SongProfile songProfile) {
+        Profile profile = getProfileById(profileId)
+                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
+        songProfile.setProfile(profile);
+        profile.getRatings().add(songProfile);
+        this.profileRepository.save(profile);
+        return profile.getRatings();
+    }
+
+    @Override
+    public List<SongProfile> getSongsOfProfile(Long profileId) {
+
+        Profile profile = getProfileById(profileId)
+                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
+        return profile.getRatings();
+    }
+
+    private Optional<Profile> getProfileById(Long id) {
+        return profileRepository.findById(id);
     }
 }

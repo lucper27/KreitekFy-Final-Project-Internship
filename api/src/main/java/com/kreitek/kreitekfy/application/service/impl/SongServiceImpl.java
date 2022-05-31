@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.application.service.impl;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
+import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.application.mapper.SongMapper;
 import com.kreitek.kreitekfy.application.service.SongService;
@@ -72,6 +73,8 @@ public class SongServiceImpl implements SongService {
         List<Song> songsByDate = this.persistence.getAllByDateSorted();
         return this.mapper.toSimpleDto(songsByDate);
     }
+
+
 
 
 }
