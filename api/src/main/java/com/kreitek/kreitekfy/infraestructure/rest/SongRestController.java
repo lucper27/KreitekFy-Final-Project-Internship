@@ -98,6 +98,18 @@ public class SongRestController {
         return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/songs/reproduced", produces = "application/songReps+json")
+    ResponseEntity<List<SongSimpleDTO>> getAllmoreReproduced() {
+        List<SongSimpleDTO> moreReproducedSongs = this.songService.getMoreReproducedSongs();
+        return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
+    }
 
+    @CrossOrigin
+    @GetMapping(value = "/songs/reproduced", produces = "application/songStyleRepId+json")
+    ResponseEntity<List<SongSimpleDTO>> getAllmoreReproducedByStyle(@RequestParam Long styleId) {
+        List<SongSimpleDTO> moreReproducedSongs = this.songService.getMoreReproducedByStyle(styleId);
+        return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
+    }
 
 }
