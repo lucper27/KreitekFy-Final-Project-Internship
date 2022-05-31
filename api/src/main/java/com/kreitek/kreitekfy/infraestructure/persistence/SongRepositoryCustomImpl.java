@@ -1,5 +1,6 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
+import com.kreitek.kreitekfy.domain.entity.Reproduction;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import com.kreitek.kreitekfy.domain.entity.SongProfile;
