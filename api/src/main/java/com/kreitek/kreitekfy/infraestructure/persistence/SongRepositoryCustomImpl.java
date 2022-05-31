@@ -1,6 +1,7 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
 import com.kreitek.kreitekfy.domain.entity.Song;
+import com.kreitek.kreitekfy.domain.entity.SongProfile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,4 +31,42 @@ public class SongRepositoryCustomImpl implements SongRepositoryCustom {
         return entityManager.createQuery(query).setMaxResults(5).getResultList();
 
     }
+
+
+    @Override
+    public List<Song> findAllSongsByRating() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Song> query = cb.createQuery(Song.class);
+
+        Root<SongProfile> songProfile = query.from(SongProfile.class);
+        Path<Song> songPath = songProfile.get("song");
+        Order ratingOrder = cb.desc(cb.avg(songProfile.get("rating")));
+
+        query.select(songPath);
+        query.groupBy(songPath.get("id"));
+        query.orderBy(ratingOrder);
+
+        return entityManager.createQuery(query).setMaxResults(5).getResultList();
+    }
+
+    @Override
+    public List<Song> findAllSongsByRatingAndStyleSorted(Long styleId) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Song> query = cb.createQuery(Song.class);
+
+        Root<SongProfile> songProfile = query.from(SongProfile.class);
+        Path<Song> songPath = songProfile.get("song");
+        Order ratingOrder = cb.desc(cb.avg(songProfile.get("rating")));
+
+        Path<Long> styleIdPath = songPath.get("style").get("id");
+        Predicate styleIdPredicate = cb.equal(styleIdPath, styleId);
+
+        query.select(songPath);
+        query.where(styleIdPredicate);
+        query.groupBy(songPath.get("id"));
+        query.orderBy(ratingOrder);
+
+        return entityManager.createQuery(query).setMaxResults(5).getResultList();
+    }
+
 }

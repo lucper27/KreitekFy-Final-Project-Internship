@@ -80,5 +80,17 @@ public class SongServiceImpl implements SongService {
         return this.mapper.toSimpleDto(songByStyleAndDate);
     }
 
+    @Override
+    public List<SongSimpleDTO> getAllByRating() {
+        List<Song> songsByRating = this.persistence.getAllByRatingSorted();
+        return this.mapper.toSimpleDto(songsByRating);
+    }
+
+    @Override
+    public List<SongSimpleDTO> getAllByRatingAndStyle(Long styleId) {
+        List<Song> songsByRatingAndStyleSorted = this.persistence.getAllByRatingAndStyleSorted(styleId);
+        return this.mapper.toSimpleDto(songsByRatingAndStyleSorted);
+    }
+
 
 }

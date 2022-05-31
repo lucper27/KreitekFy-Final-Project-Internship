@@ -72,4 +72,18 @@ public class SongPersistenceImpl implements SongPersistence {
         return songsByStyleAndDate;
     }
 
+    @Override
+    public List<Song> getAllByRatingSorted() {
+        List<Song> songsByRating = this.songRepository.findAllSongsByRating();
+
+        return songsByRating;
+    }
+
+    @Override
+    public List<Song> getAllByRatingAndStyleSorted(Long styleId) {
+        List<Song> songsByRating = this.songRepository.findAllSongsByRatingAndStyleSorted(styleId);
+
+        return songsByRating;
+    }
+
 }
