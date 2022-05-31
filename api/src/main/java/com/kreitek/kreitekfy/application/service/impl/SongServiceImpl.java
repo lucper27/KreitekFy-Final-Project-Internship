@@ -81,15 +81,15 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public List<SongSimpleDTO> getMoreReproducedSongs() {
-        List<Song> moreReproducedSongs = this.persistence.findMoreReproduced();
-        return this.mapper.toSimpleDto(moreReproducedSongs);
+    public List<SongSimpleDTO> getAllByRating() {
+        List<Song> songsByRating = this.persistence.getAllByRatingSorted();
+        return this.mapper.toSimpleDto(songsByRating);
     }
 
     @Override
-    public List<SongSimpleDTO> getMoreReproducedByStyle(Long styleId) {
-        List<Song> moreReproducedByStyle = this.persistence.findMoreReproducedByStyle(styleId);
-        return this.mapper.toSimpleDto(moreReproducedByStyle);
+    public List<SongSimpleDTO> getAllByRatingAndStyle(Long styleId) {
+        List<Song> songsByRatingAndStyleSorted = this.persistence.getAllByRatingAndStyleSorted(styleId);
+        return this.mapper.toSimpleDto(songsByRatingAndStyleSorted);
     }
 
 

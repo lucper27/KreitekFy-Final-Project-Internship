@@ -1,27 +1,46 @@
-.row {
-  .titleRow {
+
+.songsHeader {
+  h1 {
     color: var(--color-segundary);
     margin: 0;
-    padding: 0;
-    hr {
-      margin: 5px 0;
-      border: 1px var(--color-segundary) solid;
-      opacity: 1;
-    }
-  }
-
-  .titleRow:before {
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 100px;
-    background-color: var(--color-segundary);
-    margin-top: -2px;
-  }
-
-  .songCard {
-    display: flex;
-    justify-content: center;
+    width: 100%;
   }
 }
 
+.songCard {
+  display: flex;
+  justify-content: center;
+}
+
+hr {
+  height: 2px;
+  opacity: 1;
+  color: var(--color-segundary);
+}
+
+:host ::ng-deep {
+  .inputClass.p-autocomplete {
+    width: 100%;
+    .p-inputtext {
+
+      letter-spacing: 2px;
+      position: relative;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 1rem;
+      font-weight: 400;
+      height: 45px;
+      border: var(--border-dark-primary);
+      box-shadow: var(--box-shadow-dark-primary);
+      background: transparent;
+      color: var(--color-segundary);
+      width: 100%;
+      min-width: 200px;
+    }
+    .p-inputtext:focus, .p-inputtext:hover {
+      top: 2px;
+      left: 1px;
+      box-shadow: none;
+    }
+  }
+}

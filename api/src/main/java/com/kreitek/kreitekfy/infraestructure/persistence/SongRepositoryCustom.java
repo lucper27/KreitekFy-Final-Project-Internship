@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface SongRepositoryCustom {
     List<Song> findAllNewsById(Long id);
+    List<Song> findAllSongsByRating();
+    List<Song> findAllSongsByRatingAndStyleSorted(Long id);
 
-    List<Song> findMoreReproduced();
-
-    List<Song> findMoreReproducedByStyle(Long styleId);
 }

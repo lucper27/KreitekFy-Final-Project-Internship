@@ -73,16 +73,17 @@ public class SongPersistenceImpl implements SongPersistence {
     }
 
     @Override
-    public List<Song> findMoreReproduced() {
-        List<Song> moreReproducedSongs = this.songRepository.findMoreReproduced();
+    public List<Song> getAllByRatingSorted() {
+        List<Song> songsByRating = this.songRepository.findAllSongsByRating();
 
-        return moreReproducedSongs;
+        return songsByRating;
     }
 
     @Override
-    public List<Song> findMoreReproducedByStyle(Long styleId) {
-        List<Song> moreReproducedByStyle = this.songRepository.findMoreReproducedByStyle(styleId);
-        return moreReproducedByStyle;
+    public List<Song> getAllByRatingAndStyleSorted(Long styleId) {
+        List<Song> songsByRating = this.songRepository.findAllSongsByRatingAndStyleSorted(styleId);
+
+        return songsByRating;
     }
 
 }

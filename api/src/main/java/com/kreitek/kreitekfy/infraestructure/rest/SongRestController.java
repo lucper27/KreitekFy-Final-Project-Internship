@@ -99,17 +99,30 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs/reproduced", produces = "application/songReps+json")
-    ResponseEntity<List<SongSimpleDTO>> getAllmoreReproduced() {
-        List<SongSimpleDTO> moreReproducedSongs = this.songService.getMoreReproducedSongs();
-        return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
+    @GetMapping(value = "/songs/ratings", produces = "application/json")
+    ResponseEntity<List<SongSimpleDTO>> getAllSongsByRating() {
+        List<SongSimpleDTO> songs = this.songService.getAllByRating();
+        return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
 
+
     @CrossOrigin
-    @GetMapping(value = "/songs/reproduced", produces = "application/songStyleRepId+json")
-    ResponseEntity<List<SongSimpleDTO>> getAllmoreReproducedByStyle(@RequestParam Long styleId) {
-        List<SongSimpleDTO> moreReproducedSongs = this.songService.getMoreReproducedByStyle(styleId);
-        return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
+    @GetMapping(value = "/songs/ratings", produces = "application/songStyleId+json")
+    ResponseEntity<List<SongSimpleDTO>> getAllSongsByRatingAndStyle(@RequestParam Long styleId) {
+        List<SongSimpleDTO> songs = this.songService.getAllByRatingAndStyle(styleId);
+        return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
+
+
+
+
+//    @CrossOrigin
+//    @GetMapping(value = "/songs/news", produces = "application/songStyleId+json")
+//    ResponseEntity<List<SongSimpleDTO>> getAllSongsByStyle(@RequestParam Long styleId) {
+//        List<SongSimpleDTO> songs = this.songService.getAllSongsByStyleIdAndDateSorted(styleId);
+//        return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
+//    }
+
+
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ISong} from "../../model/song.interface";
+import {ISong, IStyle} from "../../model/song.interface";
 import {SongPlayerService} from '../../service/song-player.service';
 import {ActivatedRoute} from "@angular/router";
+import {StyleService} from "../../../../shared/services/style.service";
 
 @Component({
   selector: 'app-song-player-list',
@@ -12,9 +13,13 @@ export class SongPlayerListComponent implements OnInit {
   profileName?: string | null;
   songList: ISong[] = [];
 
+  selectedStyle?: IStyle;
+  styles: IStyle[] = [];
+
   constructor(
     private songPlayerService: SongPlayerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private styleService: StyleService
   ) { }
 
   ngOnInit(): void {
@@ -22,8 +27,8 @@ export class SongPlayerListComponent implements OnInit {
     this.getAllNewSongs();
   }
 
-  private getAllNewSongs() {
-    this.songPlayerService.getAllNewSongs().subscribe({
+  private getAllNewSongs(styleId?: number) {
+    this.songPlayerService.getAllNewSongs(styleId).subscribe({
       next: ((allNewSongs: any) => {this.songList = allNewSongs
         console.log(allNewSongs)
       }),
@@ -32,4 +37,26 @@ export class SongPlayerListComponent implements OnInit {
   }
 
 
+  getAllStyles($event: any) {
+    let styleSearch: string | undefined;
+    if ($event?.query) {
+      styleSearch = $event.query;
+    }
+    this.styleService.getAllStyles(styleSearch).subscribe({
+      next: (stylesFiltered: any) => {
+        this.styles = stylesFiltered;
+      },
+      error: err => {
+        console.log(err)
+      }
+    })
+  }
+
+  styleSelected() {
+    this.getAllNewSongs(this.selectedStyle?.id);
+  }
+
+  onClear() {
+    this.getAllNewSongs();
+  }
 }
