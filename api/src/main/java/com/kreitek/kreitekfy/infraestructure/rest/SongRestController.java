@@ -91,5 +91,13 @@ public class SongRestController {
         return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/songs/news", produces = "application/songStyleId+json")
+    ResponseEntity<List<SongSimpleDTO>> getAllSongsByStyle(@RequestParam Long styleId) {
+        List<SongSimpleDTO> songs = this.songService.getAllSongsByStyleIdAndDateSorted(styleId);
+        return new ResponseEntity<List<SongSimpleDTO>>(songs, HttpStatus.OK);
+    }
+
+
 
 }

@@ -1,6 +1,4 @@
 package com.kreitek.kreitekfy.domain.persistence;
-import com.kreitek.kreitekfy.application.dto.ReproductionDTO;
-import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +18,5 @@ public interface SongPersistence {
 
     List<Song> getAllByDateSorted();
 
+    List<Song> getAllSongsByStyleIdAndDateSorted(Long styleId);
 }

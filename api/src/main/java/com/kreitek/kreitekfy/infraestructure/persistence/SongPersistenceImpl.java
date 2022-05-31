@@ -1,7 +1,5 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
-import com.kreitek.kreitekfy.application.dto.ReproductionDTO;
-import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import com.kreitek.kreitekfy.domain.persistence.SongPersistence;
 import com.kreitek.kreitekfy.infraestructure.specs.SongSpecification;
@@ -67,5 +65,11 @@ public class SongPersistenceImpl implements SongPersistence {
         return songsByDate;
     }
 
+    @Override
+    public List<Song> getAllSongsByStyleIdAndDateSorted(Long styleId) {
+        List<Song> songsByStyleAndDate = this.songRepository.findAllNewsById(styleId);
+
+        return songsByStyleAndDate;
+    }
 
 }

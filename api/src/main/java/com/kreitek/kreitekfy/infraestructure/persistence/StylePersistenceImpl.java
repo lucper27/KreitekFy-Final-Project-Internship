@@ -1,6 +1,6 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
-import com.kreitek.kreitekfy.domain.entity.Artist;
+
 import com.kreitek.kreitekfy.domain.entity.Style;
 import com.kreitek.kreitekfy.domain.persistence.StylePersistence;
 import org.springframework.beans.factory.annotation.Autowired;

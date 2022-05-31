@@ -16,12 +16,11 @@ public interface SongService {
 //    Page<SongSimpleDTO> getAllSongsByArtist(Pageable pageable,Long artistId);
 //    Page<SongSimpleDTO> getAllSongsByStyle(Pageable pageable,Long styleId);
     Optional<SongAdminDTO> getSongById(Long songId);
-
     SongAdminDTO saveSong(SongAdminDTO songAdminDTO);
     void deleteSong(Long songId);
     Page<SongSimpleDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter);
     List<SongSimpleDTO> getAllByDateSorted();
 
 
-
+    List<SongSimpleDTO> getAllSongsByStyleIdAndDateSorted(Long styleId);
 }
