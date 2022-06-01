@@ -23,7 +23,7 @@ public class StyleRestController {
 
     @CrossOrigin
     @GetMapping(value = "/styles", produces = "application/json")
-    ResponseEntity<List<StyleDTO>> getAllStylesbyPartialName(@RequestParam(name = "partialName", required = true) String partialName) {
+    public ResponseEntity<List<StyleDTO>> getAllStylesbyPartialName(@RequestParam(name = "partialName", required = true) String partialName) {
         List<StyleDTO> styles = this.styleService.getStylesByName(partialName);
         return new ResponseEntity<>(styles, HttpStatus.OK);
     }

@@ -6,7 +6,7 @@ import java.util.Objects;
 public class SongProfileDTO implements Serializable {
     private Long songId;
     private Long profileId;
-    private Integer rating;
+    private Double rating;
 
     public SongProfileDTO() {
     }
@@ -27,11 +27,11 @@ public class SongProfileDTO implements Serializable {
         this.profileId = profileId;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

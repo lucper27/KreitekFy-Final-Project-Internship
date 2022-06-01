@@ -23,7 +23,6 @@ public class ReproductionServiceImpl implements ReproductionService {
         this.mapper = mapper;
     }
 
-
     @Override
     public List<ReproductionDTO> addReproductionToSong(Long songId, ReproductionDTO reproductionDTO) {
        List<Reproduction> reproduction = this.persistence.addReproductionToSong(songId, mapper.toEntity(reproductionDTO));

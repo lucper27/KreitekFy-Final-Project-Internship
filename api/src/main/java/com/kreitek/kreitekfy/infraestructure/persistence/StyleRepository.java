@@ -1,6 +1,5 @@
 package com.kreitek.kreitekfy.infraestructure.persistence;
 
-import com.kreitek.kreitekfy.domain.entity.Artist;
 import com.kreitek.kreitekfy.domain.entity.Style;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,5 @@
 package com.kreitek.kreitekfy.infraestructure.rest;
+
 import com.kreitek.kreitekfy.application.dto.ArtistDTO;
 import com.kreitek.kreitekfy.application.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ArtistRestController {
 
     private final ArtistService artistService;
+
     @Autowired
     public ArtistRestController(ArtistService artistService) {
         this.artistService = artistService;
@@ -22,7 +24,8 @@ public class ArtistRestController {
 
     @CrossOrigin
     @GetMapping(value = "/artists", produces = "application/json")
-    ResponseEntity<List<ArtistDTO>> getAllArtistsbyPartialName(@RequestParam(name = "partialName", required = true) String partialName) {
+    ResponseEntity<List<ArtistDTO>> getAllArtistsbyPartialName(@RequestParam(name = "partialName", required = true)
+                                                               String partialName) {
         List<ArtistDTO> artists = this.artistService.getArtistsByName(partialName);
         return new ResponseEntity<>(artists, HttpStatus.OK);
     }

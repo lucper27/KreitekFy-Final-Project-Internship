@@ -1,7 +1,6 @@
 package com.kreitek.kreitekfy.application.mapper;
 
 import com.kreitek.kreitekfy.application.dto.SongAdminDTO;
-import com.kreitek.kreitekfy.application.dto.SongPlayerDTO;
 import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
 import com.kreitek.kreitekfy.domain.entity.Song;
 import org.mapstruct.Mapper;
@@ -29,5 +28,4 @@ public interface SongMapper extends EntityMapper<SongAdminDTO, Song> {
         song.setId(id);
         return song;
     }
-
 }

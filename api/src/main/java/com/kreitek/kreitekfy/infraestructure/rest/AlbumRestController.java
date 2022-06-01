@@ -24,7 +24,8 @@ public class AlbumRestController {
 
     @CrossOrigin
     @GetMapping(value = "/albums", produces = "application/json")
-    ResponseEntity<List<AlbumDTO>> getAllAlbumsbyPartialName(@RequestParam(name = "partialName", required = true) String partialName) {
+    ResponseEntity<List<AlbumDTO>> getAllAlbumsbyPartialName(@RequestParam(name = "partialName", required = true)
+                                                             String partialName) {
         List<AlbumDTO> albums = this.albumService.getAlbumsByName(partialName);
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }

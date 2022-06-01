@@ -22,7 +22,7 @@ public class ReproductionRestController {
     @CrossOrigin
     @PostMapping(value = "/songs/{songId}/reproductions", produces = "application/json", consumes = "application/json")
     public ResponseEntity<List<ReproductionDTO>> newReproduction(@PathVariable Long songId,
-                                                                   @RequestBody ReproductionDTO reproductionDTO) {
+                                                                 @RequestBody ReproductionDTO reproductionDTO) {
         List<ReproductionDTO> reproductionDTOS = reproductionService.addReproductionToSong(songId, reproductionDTO);
         return new ResponseEntity<>(reproductionDTOS, HttpStatus.CREATED);
     }

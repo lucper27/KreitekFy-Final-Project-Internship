@@ -18,12 +18,6 @@ public class ReproductionPersistenceImpl implements ReproductionPersistence {
         this.songRepository = songRepository;
     }
 
-
-    @Override
-    public List<Reproduction> findAllBySong_id(Long songId) {
-        return null;
-    }
-
     @Override
     public List<Reproduction> addReproductionToSong(Long songId, Reproduction reproduction) {
         Song song = this.songRepository.findSongById(songId);

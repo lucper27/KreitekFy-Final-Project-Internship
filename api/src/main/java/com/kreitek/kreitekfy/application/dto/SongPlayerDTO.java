@@ -3,7 +3,6 @@ package com.kreitek.kreitekfy.application.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class SongPlayerDTO implements Serializable {
     private Long id;
 

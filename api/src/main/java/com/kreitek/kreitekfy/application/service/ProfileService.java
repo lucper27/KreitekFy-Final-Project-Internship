@@ -2,7 +2,6 @@ package com.kreitek.kreitekfy.application.service;
 
 import com.kreitek.kreitekfy.application.dto.ProfileDTO;
 import com.kreitek.kreitekfy.application.dto.SongProfileDTO;
-
 import java.util.List;
 
 public interface ProfileService {

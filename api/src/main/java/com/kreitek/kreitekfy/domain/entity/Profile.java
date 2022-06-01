@@ -3,7 +3,6 @@ package com.kreitek.kreitekfy.domain.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "profiles")

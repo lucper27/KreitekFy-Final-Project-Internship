@@ -10,7 +10,6 @@ public class ReproductionDTO implements Serializable {
 
     private Long profileId;
 
-
     public ReproductionDTO() {
     }
 
@@ -29,7 +28,6 @@ public class ReproductionDTO implements Serializable {
     public void setSongId(Long songId) {
         this.songId = songId;
     }
-
 
     public Long getProfileId() {
         return profileId;

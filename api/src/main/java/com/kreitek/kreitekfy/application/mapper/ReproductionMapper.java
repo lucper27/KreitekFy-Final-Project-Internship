@@ -2,8 +2,6 @@ package com.kreitek.kreitekfy.application.mapper;
 
 import com.kreitek.kreitekfy.application.dto.ReproductionDTO;
 import com.kreitek.kreitekfy.domain.entity.Reproduction;
-import com.kreitek.kreitekfy.domain.entity.SongProfile;
-import com.kreitek.kreitekfy.domain.key.SongProfileKey;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

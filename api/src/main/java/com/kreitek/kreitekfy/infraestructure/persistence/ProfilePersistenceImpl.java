@@ -4,10 +4,7 @@ import com.kreitek.kreitekfy.domain.entity.Profile;
 import com.kreitek.kreitekfy.domain.entity.SongProfile;
 import com.kreitek.kreitekfy.domain.persistence.ProfilePersistence;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Repository
 public class ProfilePersistenceImpl implements ProfilePersistence {
@@ -17,7 +14,6 @@ public class ProfilePersistenceImpl implements ProfilePersistence {
     public ProfilePersistenceImpl(ProfileRepository profileRepository) {
         this.profileRepository = profileRepository;
     }
-
 
     @Override
     public List<Profile> getAllProfiles() {
@@ -42,5 +38,4 @@ public class ProfilePersistenceImpl implements ProfilePersistence {
         Profile profile = this.profileRepository.getProfileById(profileId);
         return profile.getRatings();
     }
-
 }

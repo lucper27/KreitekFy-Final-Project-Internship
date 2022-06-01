@@ -30,7 +30,6 @@ public class ProfileServiceImpl implements ProfileService {
         this.songProfileMapper = songProfileMapper;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<ProfileDTO> getAllProfiles() {
@@ -59,6 +58,4 @@ public class ProfileServiceImpl implements ProfileService {
         List<SongProfile> songProfiles=this.persistence.getSongsOfProfile(profileId);
         return this.songProfileMapper.toDto(songProfiles);
     }
-
-
 }

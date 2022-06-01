@@ -5,7 +5,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "songs")
@@ -44,9 +43,7 @@ public class Song {
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Reproduction> reproductions;
 
-
     public Song() {
-
     }
 
     public Long getId() {

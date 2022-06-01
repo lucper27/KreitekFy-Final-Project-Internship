@@ -1,7 +1,5 @@
 package com.kreitek.kreitekfy.application.mapper;
 
-import com.kreitek.kreitekfy.application.dto.SongSimpleDTO;
-
 import java.util.List;
 
 public interface EntityMapper <D, E>{

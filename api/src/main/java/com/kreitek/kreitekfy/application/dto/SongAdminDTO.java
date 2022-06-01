@@ -1,7 +1,4 @@
 package com.kreitek.kreitekfy.application.dto;
-import com.kreitek.kreitekfy.domain.entity.Album;
-import com.kreitek.kreitekfy.domain.entity.Artist;
-import com.kreitek.kreitekfy.domain.entity.Style;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -66,7 +63,6 @@ public class SongAdminDTO implements Serializable {
     public void setImage(byte[] image) {
         this.image = image;
     }
-
 
     public AlbumDTO getAlbum() {
         return album;

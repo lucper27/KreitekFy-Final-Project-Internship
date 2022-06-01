@@ -1,7 +1,6 @@
 package com.kreitek.kreitekfy.domain.entity;
 
 import com.kreitek.kreitekfy.domain.key.SongProfileKey;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class SongProfile {
     private Profile profile;
 
     @Column(name = "rating")
-    private Integer rating;
+    private Double rating;
 
     public SongProfileKey getId() {
         return id;
@@ -50,11 +49,11 @@ public class SongProfile {
         this.profile = profile;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

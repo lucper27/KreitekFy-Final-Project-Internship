@@ -2,7 +2,6 @@ package com.kreitek.kreitekfy.infraestructure.persistence;
 
 import com.kreitek.kreitekfy.domain.entity.Reproduction;
 import com.kreitek.kreitekfy.domain.entity.Song;
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import com.kreitek.kreitekfy.domain.entity.SongProfile;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,6 @@ import java.util.List;
 
 @Repository
 public class SongRepositoryCustomImpl implements SongRepositoryCustom {
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -27,11 +25,9 @@ public class SongRepositoryCustomImpl implements SongRepositoryCustom {
         Order inclusionDateOrder = cb.desc(song.get("inclusionDate"));
 
         Predicate styleIdPredicate = cb.equal(styleIdPath, styleId);
-
         query.select(song).where(styleIdPredicate).orderBy(inclusionDateOrder);
 
         return entityManager.createQuery(query).setMaxResults(5).getResultList();
-
     }
 
 

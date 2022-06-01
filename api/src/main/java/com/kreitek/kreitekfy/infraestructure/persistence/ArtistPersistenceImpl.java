@@ -4,7 +4,6 @@ import com.kreitek.kreitekfy.domain.entity.Artist;
 import com.kreitek.kreitekfy.domain.persistence.ArtistPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 @Repository
 public class ArtistPersistenceImpl implements ArtistPersistence {

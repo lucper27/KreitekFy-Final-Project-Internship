@@ -30,8 +30,6 @@ public class ProfileRestController {
     @CrossOrigin
     @PostMapping(value = "/profiles", produces = "application/json", consumes = "application/json")
     ResponseEntity<ProfileDTO> createUser(@RequestBody ProfileDTO profileDTO) {
-        System.out.println("Aca abajo esta el DTO");
-        System.out.println(profileDTO);
         ProfileDTO savedProfile = this.profileService.save(profileDTO);
         return new ResponseEntity<>(savedProfile, HttpStatus.OK);
     }
@@ -39,7 +37,7 @@ public class ProfileRestController {
     @CrossOrigin
     @PutMapping(value = "/profiles/{profileId}/ratings", produces = "application/json", consumes = "application/json")
     public ResponseEntity<List<SongProfileDTO>> addSongInProfile(@PathVariable Long profileId,
-                                                                                     @RequestBody SongProfileDTO songProfileDTO) {
+                                                                 @RequestBody SongProfileDTO songProfileDTO) {
         List<SongProfileDTO> songProfileDTOS = profileService
                 .addSongInProfile(profileId, songProfileDTO);
         return new ResponseEntity<>(songProfileDTOS, HttpStatus.OK);
@@ -48,13 +46,8 @@ public class ProfileRestController {
     @CrossOrigin
     @GetMapping(value = "/profiles/{profileId}/ratings", produces = "application/json")
     public ResponseEntity<List<SongProfileDTO>> getSongOfProfile(@PathVariable Long profileId) {
-
         List<SongProfileDTO> songProfileDTOs = profileService
                 .getSongsOfProfile(profileId);
         return new ResponseEntity<>(songProfileDTOs, HttpStatus.OK);
     }
-
-
-
-
 }

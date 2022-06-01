@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,24 +24,8 @@ public class SongPersistenceImpl implements SongPersistence {
     @Override
     public Page<Song> getAllSongs(Pageable pageable, String filters) {
         SongSpecification specification = new SongSpecification(SearchCriteriaHelper.fromFilterString(filters));
-        return this.songRepository.findAll(specification,pageable);
+        return this.songRepository.findAll(specification, pageable);
     }
-//
-//    @Override
-//    public Page<Song> getAllSongsByAlbum(Pageable pageable, Long albumId) {
-//        return this.songRepository.findAllByAlbumId(albumId, pageable);
-//    }
-//
-//    @Override
-//    public Page<Song> getAllSongsByArtist(Pageable pageable, Long artistId) {
-//        return this.songRepository.findAllByArtistId(artistId, pageable);
-//    }
-//
-//    @Override
-//    public Page<Song> getAllSongsByStyle(Pageable pageable, Long styleId) {
-//        return this.songRepository.findAllByStyleId(styleId,pageable);
-//    }
-
     @Override
     public Optional<Song> getSongById(Long songId) {
         return this.songRepository.findById(songId);
@@ -68,14 +51,12 @@ public class SongPersistenceImpl implements SongPersistence {
     @Override
     public List<Song> getAllSongsByStyleIdAndDateSorted(Long styleId) {
         List<Song> songsByStyleAndDate = this.songRepository.findAllNewsById(styleId);
-
         return songsByStyleAndDate;
     }
 
     @Override
     public List<Song> findMoreReproduced() {
         List<Song> moreReproducedSongs = this.songRepository.findMoreReproduced();
-
         return moreReproducedSongs;
     }
 
@@ -88,14 +69,12 @@ public class SongPersistenceImpl implements SongPersistence {
     @Override
     public List<Song> getAllByRatingSorted() {
         List<Song> songsByRating = this.songRepository.findAllSongsByRating();
-
         return songsByRating;
     }
 
     @Override
     public List<Song> getAllByRatingAndStyleSorted(Long styleId) {
         List<Song> songsByRating = this.songRepository.findAllSongsByRatingAndStyleSorted(styleId);
-
         return songsByRating;
     }
 
@@ -104,5 +83,4 @@ public class SongPersistenceImpl implements SongPersistence {
         List<Song> songsRecommended = this.songRepository.findAllSongsRecommended(profileId);
         return songsRecommended;
     }
-
 }
