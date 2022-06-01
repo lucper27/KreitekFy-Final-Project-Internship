@@ -124,7 +124,7 @@ public class SongRestController {
 //    }
 
     @CrossOrigin
-    @GetMapping(value = "/songs/reproduced", produces = "application/songReps+json")
+    @GetMapping(value = "/songs/reproduced", produces = "application/json")
     ResponseEntity<List<SongSimpleDTO>> getAllmoreReproduced() {
         List<SongSimpleDTO> moreReproducedSongs = this.songService.getMoreReproducedSongs();
         return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
