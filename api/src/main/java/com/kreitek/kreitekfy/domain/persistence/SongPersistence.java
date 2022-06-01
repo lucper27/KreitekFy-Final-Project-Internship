@@ -27,4 +27,6 @@ public interface SongPersistence {
     List<Song> getAllByRatingSorted();
 
     List<Song> getAllByRatingAndStyleSorted(Long styleId);
+
+    List<Song> getAllRecommendedSongs(Long profileId);
 }

@@ -137,4 +137,11 @@ public class SongRestController {
         return new ResponseEntity<List<SongSimpleDTO>>(moreReproducedSongs, HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/songs/recommended", produces = "application/json")
+    ResponseEntity<List<SongSimpleDTO>> getAllRecommendedSongs(Long profileId){
+        List<SongSimpleDTO> recommendedSongs = this.songService.getRecommendedSongs(profileId);
+        return new ResponseEntity<List<SongSimpleDTO>>(recommendedSongs,HttpStatus.OK);
+    }
+
 }

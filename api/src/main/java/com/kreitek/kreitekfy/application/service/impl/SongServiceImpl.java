@@ -104,5 +104,11 @@ public class SongServiceImpl implements SongService {
         return this.mapper.toSimpleDto(moreReproducedByStyle);
     }
 
+    @Override
+    public List<SongSimpleDTO> getRecommendedSongs(Long profileId) {
+        List<Song> songsRecommended = this.persistence.getAllRecommendedSongs(profileId);
+        return this.mapper.toSimpleDto(songsRecommended);
+    }
+
 
 }

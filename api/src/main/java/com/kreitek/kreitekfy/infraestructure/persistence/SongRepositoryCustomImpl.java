@@ -71,6 +71,7 @@ public class SongRepositoryCustomImpl implements SongRepositoryCustom {
         return entityManager.createQuery(query).setMaxResults(5).getResultList();
     }
 
+
     @Override
     public List<Song> findMoreReproduced() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -103,7 +104,6 @@ public class SongRepositoryCustomImpl implements SongRepositoryCustom {
 
         return entityManager.createQuery(query).setMaxResults(5).getResultList();
     }
-
 
 
 }

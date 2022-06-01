@@ -13,4 +13,6 @@ public interface SongRepositoryCustom {
     List<Song> findAllSongsByRating();
     List<Song> findAllSongsByRatingAndStyleSorted(Long id);
 
+
+
 }

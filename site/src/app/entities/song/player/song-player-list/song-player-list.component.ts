@@ -78,7 +78,6 @@ export class SongPlayerListComponent implements OnInit {
     this.getAllNewSongs();
     this.getAllRatedSongs();
     this.getMostReproducedSongs();
-    this.getRecommendedSongs();
   }
 
   private getMostReproducedSongs(styleId?: number) {

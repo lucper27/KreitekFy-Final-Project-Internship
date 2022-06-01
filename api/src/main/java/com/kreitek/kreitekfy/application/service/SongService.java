@@ -31,4 +31,6 @@ public interface SongService {
     List<SongSimpleDTO> getMoreReproducedSongs();
 
     List<SongSimpleDTO> getMoreReproducedByStyle(Long styleId);
+
+    List<SongSimpleDTO> getRecommendedSongs(Long profileId);
 }

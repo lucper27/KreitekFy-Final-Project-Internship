@@ -99,4 +99,10 @@ public class SongPersistenceImpl implements SongPersistence {
         return songsByRating;
     }
 
+    @Override
+    public List<Song> getAllRecommendedSongs(Long profileId) {
+        List<Song> songsRecommended = this.songRepository.findAllSongsRecommended(profileId);
+        return songsRecommended;
+    }
+
 }

@@ -29,4 +29,23 @@ public interface SongRepository  extends JpaRepository<Song,Long>, JpaSpecificat
 
 
     List<Song> findAllSongsByRatingAndStyleSorted(Long id);
+
+
+    @Query(value="SELECT SONGS.* \n" +
+            "FROM SONGS \n" +
+            "INNER JOIN REPRODUCTIONS ON SONGS.ID = REPRODUCTIONS.SONG_ID  \n" +
+            "INNER JOIN PROFILES_SONGS  ON SONGS.ID = PROFILES_SONGS.SONG_ID\n" +
+            "WHERE STYLE_ID IN ( \n" +
+            "SELECT SONGS.STYLE_ID\n" +
+            "FROM REPRODUCTIONS \n" +
+            "INNER JOIN SONGS ON REPRODUCTIONS.SONG_ID = SONGS.ID\n" +
+            "WHERE PROFILE_ID = ?1\n" +
+            "GROUP BY STYLE_ID\n" +
+            "ORDER BY COUNT(SONG_ID) DESC\n" +
+            "LIMIT 2\n" +
+            ")\n" +
+            "GROUP BY REPRODUCTIONS.SONG_ID\n" +
+            "HAVING AVG(PROFILES_SONGS.RATING) > 2\n" +
+            "ORDER BY COUNT(REPRODUCTIONS.SONG_ID) DESC",nativeQuery = true)
+    List<Song> findAllSongsRecommended(Long profileId);
 }
