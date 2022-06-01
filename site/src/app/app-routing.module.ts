@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
   { path: 'admin', component: SongAdminListComponent },
   { path: 'profile/:profileId', component: SongPlayerListComponent },
-  { path: 'profile/:profileId/songs/:songId', component: SongPlayerComponent } //Todo
+  { path: 'profile/:profileId/songs/:songId', component: SongPlayerComponent }
 ];
 
 @NgModule({

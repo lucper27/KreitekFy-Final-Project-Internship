@@ -37,7 +37,5 @@ export class SongService {
     const urlEndpoint: string = "http://localhost:8080/stream/songs/" + songId;
     return this.http.delete<any>(urlEndpoint);
   }
-
-
 }
 

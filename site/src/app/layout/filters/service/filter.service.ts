@@ -39,7 +39,4 @@ export class FilterService {
       return undefined;
     }
   }
-
-
-
 }

@@ -52,7 +52,6 @@ export class FormComponent implements OnInit {
 
   getArtist(artist: IArtist) {
     this.song.artist.id = artist.id;
-    console.log(artist);
   }
 
   getStyle(style: IStyle) {
@@ -91,7 +90,6 @@ export class FormComponent implements OnInit {
       next: (updatedSong => {}),
       error: (err => {console.log(err)})
     })
-
     this.modalRef.close()
   }
 
@@ -106,7 +104,6 @@ export class FormComponent implements OnInit {
       error: err => {console.log(err)}
     })
   }
-
 
   private initializeSong() {
     this.title = 'Crear canción';

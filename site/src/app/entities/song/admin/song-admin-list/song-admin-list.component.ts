@@ -39,14 +39,11 @@ export class SongAdminListComponent implements OnInit {
   }
 
   private getSongs() {
-
     let filters: string | undefined = '';
     filters = this.filterService.buildFilters(this.albumFilter, this.artistFilter, this.styleFilter, this.songFilter)
-    console.log('>>',filters)
 
     this.songService.getAllSongs(this.page, this.size, this.sort, filters).subscribe({
       next: ((allSongs: any) => {
-        console.log(allSongs);
         this.songList = allSongs.content;
         this.first = allSongs.first;
         this.last = allSongs.last;
@@ -69,7 +66,6 @@ export class SongAdminListComponent implements OnInit {
 
   public createSongModal() {
     const modalRef = this.modal.open(FormComponent);
-
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })
@@ -77,8 +73,7 @@ export class SongAdminListComponent implements OnInit {
 
   public editSongModal(songId: number) {
     const modalRef = this.modal.open(FormComponent, {
-      data: songId
-    });
+      data: songId});
     modalRef.afterClosed().subscribe(result => {
       this.getSongs();
     })

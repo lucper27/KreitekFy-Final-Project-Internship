@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ImageconverterService {
 
-  convertedImage: string = '';
   constructor() { }
 
   includeImageInItem($event: any): Promise<string[] | void>{
@@ -23,7 +22,6 @@ export class ImageconverterService {
       (error) =>{
         console.log("No se pudo cargar la imagen");
       });
-
     return res;
   }
 

@@ -27,7 +27,6 @@ export class SongPlayerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileId = +this.route.snapshot.paramMap.get('profileId')!;
-    console.log('esto es id'+ this.route.snapshot.paramMap.get('profileId'))
     this.getAllNewSongs();
     this.getAllRatedSongs();
     this.getMostReproducedSongs();
@@ -36,22 +35,17 @@ export class SongPlayerListComponent implements OnInit {
 
   private getAllNewSongs(styleId?: number) {
     this.songPlayerService.getAllNewSongs(styleId).subscribe({
-      next: ((allNewSongs: any) => {this.songList = allNewSongs
-        console.log(allNewSongs)
-      }),
+      next: ((allNewSongs: any) => {this.songList = allNewSongs}),
       error:((err: any) => {console.log()})
     })
   }
 
   private getAllRatedSongs(styleId?: number){
     this.songPlayerService.getAllRatedSongs(styleId).subscribe({
-      next: ((allRatedSongs: any) => {this.songListRated = allRatedSongs
-        console.log(allRatedSongs)
-      }),
+      next: ((allRatedSongs: any) => {this.songListRated = allRatedSongs}),
       error:((err: any) => {console.log()})
     })
   }
-
 
   getAllStyles($event: any) {
     let styleSearch: string | undefined;
@@ -89,9 +83,7 @@ export class SongPlayerListComponent implements OnInit {
 
   private getRecommendedSongs(profileId?:number) {
     this.songPlayerService.getRecommendedSongs(profileId).subscribe({
-      next: ((recommendedSongs: any) => {this.songListRecommended = recommendedSongs
-        console.log(recommendedSongs)
-      }),
+      next: ((recommendedSongs: any) => {this.songListRecommended = recommendedSongs}),
       error:((err: any) => {console.log()})
     })
   }

@@ -38,7 +38,6 @@ export class SongPlayerComponent implements OnInit {
         console.log(err)
       }
     })
-
   }
 
   rateSong() {
@@ -46,10 +45,9 @@ export class SongPlayerComponent implements OnInit {
       profileId: this.profileId!,
       songId: this.songId!,
       rating: this.rating!
-
     }
     this.songPlayerService.addRateSong(rate).subscribe({
-      next: (data: any) => console.log(data),
+      next: (data: any) => console.log('Valoración añadida'),
       error: err => console.log(err)
     });
   }
@@ -60,7 +58,7 @@ export class SongPlayerComponent implements OnInit {
       profileId: this.profileId!
     }
     this.songPlayerService.addReproduction(reproduction).subscribe({
-      next: (data: any) => console.log('Reproduccion añadida: ',data),
+      next: (data: any) => console.log('Reproduccion añadida'),
       error: err => console.log(err)
     });
   }

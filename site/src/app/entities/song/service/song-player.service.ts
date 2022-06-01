@@ -20,7 +20,6 @@ export class SongPlayerService {
     }else {
       urlEndpoint = "http://localhost:8080/stream/songs/news"
     }
-
     return this.http.get<ISong[]>(urlEndpoint, {'headers': header});
   }
 
@@ -34,7 +33,6 @@ export class SongPlayerService {
     }else {
       urlEndpoint = "http://localhost:8080/stream/songs/ratings"
     }
-
     return this.http.get<ISong[]>(urlEndpoint, {'headers': header});
   }
 
@@ -48,7 +46,6 @@ export class SongPlayerService {
     }else {
       urlEndpoint = "http://localhost:8080/stream/songs/reproduced"
     }
-
     return this.http.get<ISong[]>(urlEndpoint, {'headers': header});
   }
 
