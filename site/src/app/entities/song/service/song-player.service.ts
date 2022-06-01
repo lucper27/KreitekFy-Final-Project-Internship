@@ -61,4 +61,10 @@ export class SongPlayerService {
     const urlEndpoint = `http://localhost:8080/stream/songs/${reproduction.songId}/reproductions`
     return this.http.post<IReproduction[]>(urlEndpoint, reproduction);
   }
+
+  getRecommendedSongs(profileId?: number): Observable<ISong[]> {
+    let urlEndpoint: string;
+    urlEndpoint = "http://localhost:8080/stream/songs/recommended?profileId="+profileId;
+    return this.http.get<ISong[]>(urlEndpoint)
+  }
 }

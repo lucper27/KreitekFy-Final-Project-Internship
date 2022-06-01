@@ -10,10 +10,11 @@ import {StyleService} from "../../../../shared/services/style.service";
   styleUrls: ['./song-player-list.component.scss']
 })
 export class SongPlayerListComponent implements OnInit {
-  profileName?: string | null;
+  profileId?: number;
   songList: ISong[] = [];
   songListRated: ISong[] = [];
   mostReproducedSongs: ISong[] = [];
+  songListRecommended: ISong[] = [];
 
   selectedStyle?: IStyle;
   styles: IStyle[] = [];
@@ -25,10 +26,12 @@ export class SongPlayerListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.profileName = this.route.snapshot.paramMap.get('profileName');
+    this.profileId = +this.route.snapshot.paramMap.get('profileId')!;
+    console.log('esto es id'+ this.route.snapshot.paramMap.get('profileId'))
     this.getAllNewSongs();
     this.getAllRatedSongs();
     this.getMostReproducedSongs();
+    this.getRecommendedSongs(this.profileId);
   }
 
   private getAllNewSongs(styleId?: number) {
@@ -75,12 +78,22 @@ export class SongPlayerListComponent implements OnInit {
     this.getAllNewSongs();
     this.getAllRatedSongs();
     this.getMostReproducedSongs();
+    this.getRecommendedSongs();
   }
 
   private getMostReproducedSongs(styleId?: number) {
     this.songPlayerService.getMostReproducedSongs(styleId).subscribe({
       next: ((mostReproducedSongs: any) => {this.mostReproducedSongs = mostReproducedSongs}),
       error: ((err: any) => {console.log()})
+    })
+  }
+
+  private getRecommendedSongs(profileId?:number) {
+    this.songPlayerService.getRecommendedSongs(profileId).subscribe({
+      next: ((recommendedSongs: any) => {this.songListRecommended = recommendedSongs
+        console.log(recommendedSongs)
+      }),
+      error:((err: any) => {console.log()})
     })
   }
 }

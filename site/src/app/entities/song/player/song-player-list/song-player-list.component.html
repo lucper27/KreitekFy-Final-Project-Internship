@@ -53,4 +53,18 @@
       <app-song-card class="songCard" [song]="songRated" [routerLink]="['songs',songRated.id]"></app-song-card>
     </div>
   </div>
+
+  <hr>
+  <div class="row songsHeader">
+    <div class="col">
+      <h1>Recomendadas para tí</h1>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row justify-content-evenly">
+    <div class="col" *ngFor="let songRecommended of songListRecommended">
+      <app-song-card class="songCard" [song]="songRecommended" [routerLink]="['songs',songRecommended.id]"></app-song-card>
+    </div>
+  </div>
 </div>
