@@ -13,7 +13,7 @@
         </div>
 
         <div class="col d-flex justify-content-end">
-          <button type="button" class="btn btn-primary light-style"  [routerLink]="['/profile', profileName]">Cerrar</button>
+          <button type="button" class="btn btn-primary light-style"  [routerLink]="['/profile', profileId]">Cerrar</button>
         </div>
       </div>
 
@@ -23,6 +23,8 @@
           <p><strong>Artista:</strong> {{song.artist.name}}</p>
           <p><strong>Album:</strong> {{song.album.title}}</p>
           <p><strong>Estilo:</strong> {{song.style.name}}</p>
+          <p-rating [cancel]="false" [stars]="4" [(ngModel)]="rating" name="rating" (onRate)="rateSong()"></p-rating>
+
         </div>
       </div>
 

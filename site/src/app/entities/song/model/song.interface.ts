@@ -25,3 +25,9 @@ export interface IStyle {
   name?: string;
   id: number;
 }
+
+export interface IRate {
+  songId: number,
+  profileId: number,
+  rating: number
+}

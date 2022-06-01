@@ -36,6 +36,7 @@ public class ProfileRestController {
         return new ResponseEntity<>(savedProfile, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PutMapping(value = "/profiles/{profileId}/ratings", produces = "application/json", consumes = "application/json")
     public ResponseEntity<List<SongProfileDTO>> addSongInProfile(@PathVariable Long profileId,
                                                                                      @RequestBody SongProfileDTO songProfileDTO) {
@@ -44,6 +45,7 @@ public class ProfileRestController {
         return new ResponseEntity<>(songProfileDTOS, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/profiles/{profileId}/ratings", produces = "application/json")
     public ResponseEntity<List<SongProfileDTO>> getSongOfProfile(@PathVariable Long profileId) {
 

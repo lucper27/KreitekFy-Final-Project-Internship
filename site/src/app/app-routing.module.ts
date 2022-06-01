@@ -8,8 +8,8 @@ import {SongPlayerComponent} from "./entities/song/player/song-player/song-playe
 const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
   { path: 'admin', component: SongAdminListComponent },
-  { path: 'profile/:profileName', component: SongPlayerListComponent },
-  { path: 'profile/:profileName/songs/:songId', component: SongPlayerComponent } //Todo
+  { path: 'profile/:profileId', component: SongPlayerListComponent },
+  { path: 'profile/:profileId/songs/:songId', component: SongPlayerComponent } //Todo
 ];
 
 @NgModule({

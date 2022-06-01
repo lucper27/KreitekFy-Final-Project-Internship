@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from "../../service/song.service";
-import {ISong} from "../../model/song.interface";
+import {IRate, ISong} from "../../model/song.interface";
 import {ActivatedRoute} from "@angular/router";
+import {SongPlayerService} from "../../service/song-player.service";
 
 @Component({
   selector: 'app-song-player',
@@ -10,17 +11,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SongPlayerComponent implements OnInit {
   song?: ISong;
-  songId?: string | null;
-  profileName?: string | null;
+  songId?: number;
+  profileId?: number;
+  rating?: number;
 
   constructor(
     private songService: SongService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private songPlayerService: SongPlayerService
   ) { }
 
   ngOnInit(): void {
-    this.profileName = this.route.snapshot.paramMap.get('profileName');
-    this.songId = this.route.snapshot.paramMap.get('songId');
+    this.profileId = +this.route.snapshot.paramMap.get('profileId')!;
+    this.songId = +this.route.snapshot.paramMap.get('songId')!;
     if(this.songId) {
       this.loadSongById();
     }
@@ -36,5 +39,18 @@ export class SongPlayerComponent implements OnInit {
       }
     })
 
+  }
+
+  rateSong() {
+    const rate: IRate = {
+      profileId: this.profileId!,
+      songId: this.songId!,
+      rating: this.rating!
+
+    }
+    this.songPlayerService.addRateSong(rate).subscribe({
+      next: (data: any) => console.log(data),
+      error: err => console.log(err)
+    });
   }
 }

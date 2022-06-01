@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDialogModule} from "@angular/material/dialog";
 import { FiltersComponent } from './layout/filters/filters/filters.component';
 import { SongPlayerComponent } from './entities/song/player/song-player/song-player.component';
+import {RatingModule} from "primeng/rating";
 
 
 @NgModule({
@@ -33,16 +34,17 @@ import { SongPlayerComponent } from './entities/song/player/song-player/song-pla
     FiltersComponent,
     SongPlayerComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AutoCompleteModule,
-    FormsModule,
-    InputTextModule,
-    BrowserAnimationsModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AutoCompleteModule,
+        FormsModule,
+        InputTextModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        RatingModule
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpRequestIntercept,
