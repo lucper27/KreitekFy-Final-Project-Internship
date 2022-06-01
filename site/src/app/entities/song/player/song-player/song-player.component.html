@@ -1,19 +1,17 @@
 <div class="song">
   <div class="row" *ngIf="song">
 
+
     <div class="col-md-4 song-image">
       <img *ngIf="song.image" height="auto" [src]="'data:image/png;base64,'+ song.image" [alt]="song.name">
     </div>
 
     <div class="col-md-8 info">
+      <button type="button" class="btn btn-primary light-style"  [routerLink]="['/profile', profileId]"><i class="fa-solid fa-xmark"></i></button>
 
       <div class="row">
         <div class="col">
           <h1>{{song.name}}</h1>
-        </div>
-
-        <div class="col d-flex justify-content-end">
-          <button type="button" class="btn btn-primary light-style"  [routerLink]="['/profile', profileId]">Cerrar</button>
         </div>
       </div>
 
@@ -23,8 +21,10 @@
           <p><strong>Artista:</strong> {{song.artist.name}}</p>
           <p><strong>Album:</strong> {{song.album.title}}</p>
           <p><strong>Estilo:</strong> {{song.style.name}}</p>
-          <p-rating [cancel]="false" [stars]="4" [(ngModel)]="rating" name="rating" (onRate)="rateSong()"></p-rating>
-
+          <p-rating styleclass="starsClass" [cancel]="false" [stars]="4" [(ngModel)]="rating" name="rating" (onRate)="rateSong()"></p-rating>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-self-center">
+          <button class="icon-buton" (click)="addReproduction()"><i class="fa-solid fa-play"></i></button>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IRate, ISong} from "../model/song.interface";
+import {IRate, IReproduction, ISong} from "../model/song.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +55,10 @@ export class SongPlayerService {
   public addRateSong(rating: IRate) {
     const urlEndpoint = `http://localhost:8080/stream/profiles/${rating.profileId}/ratings`
     return this.http.put<IRate[]>(urlEndpoint, rating);
+  }
+
+  public addReproduction(reproduction: IReproduction) {
+    const urlEndpoint = `http://localhost:8080/stream/songs/${reproduction.songId}/reproductions`
+    return this.http.post<IReproduction[]>(urlEndpoint, reproduction);
   }
 }

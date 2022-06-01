@@ -31,3 +31,8 @@ export interface IRate {
   profileId: number,
   rating: number
 }
+
+export interface IReproduction {
+  songId: number,
+  profileId: number
+}

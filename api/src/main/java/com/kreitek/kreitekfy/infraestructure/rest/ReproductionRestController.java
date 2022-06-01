@@ -5,10 +5,7 @@ import com.kreitek.kreitekfy.application.service.ReproductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,7 @@ public class ReproductionRestController {
         this.reproductionService = reproductionService;
     }
 
+    @CrossOrigin
     @PostMapping(value = "/songs/{songId}/reproductions", produces = "application/json", consumes = "application/json")
     public ResponseEntity<List<ReproductionDTO>> newReproduction(@PathVariable Long songId,
                                                                    @RequestBody ReproductionDTO reproductionDTO) {

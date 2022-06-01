@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from "../../service/song.service";
-import {IRate, ISong} from "../../model/song.interface";
+import {IRate, IReproduction, ISong} from "../../model/song.interface";
 import {ActivatedRoute} from "@angular/router";
 import {SongPlayerService} from "../../service/song-player.service";
 
@@ -50,6 +50,17 @@ export class SongPlayerComponent implements OnInit {
     }
     this.songPlayerService.addRateSong(rate).subscribe({
       next: (data: any) => console.log(data),
+      error: err => console.log(err)
+    });
+  }
+
+  addReproduction() {
+    const reproduction: IReproduction = {
+      songId: this.songId!,
+      profileId: this.profileId!
+    }
+    this.songPlayerService.addReproduction(reproduction).subscribe({
+      next: (data: any) => console.log('Reproduccion añadida: ',data),
       error: err => console.log(err)
     });
   }
